@@ -4,6 +4,7 @@
   "description": "Steam trade bot for betting website.",
   "main": "index.js",
   "scripts": {
+    "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
