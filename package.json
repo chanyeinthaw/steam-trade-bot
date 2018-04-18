@@ -1,0 +1,21 @@
+{
+  "name": "steam-trade-bot",
+  "version": "1.0.0",
+  "description": "Steam trade bot for betting website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "steam",
+    "trade",
+    "bot"
+  ],
+  "author": "Chan Nyein Thaw (chanyeinthaw@outlook.com)",
+  "license": "ISC",
+  "dependencies": {
+    "steam-tradeoffers": "^3.1.0",
+    "steam-user": "^3.27.0",
+    "steam-web-api-key": "0.0.3"
+  }
+}
