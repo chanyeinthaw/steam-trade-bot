@@ -4,19 +4,21 @@ const SteamTradeOffers = require('steam-tradeoffers');
 const Registry = require('./registry');
 
 class TradeBot {
-	constructor(accountName, password, twoFactorCode) {
+	constructor(accountName, password, twoFactorCode, registry) {
 		this.logOnOptions = {
 			accountName: accountName,
 			password: password,
 			twoFactorCode: twoFactorCode
 		};
 
+		this.registry = registry;
 		this.client = new SteamUser();
 		this.offers = new SteamTradeOffers();
 		this.tradeOfferOptions = null;
 		this.isBusy = false;
 
 		this.client.on('loggedOn', this.onClientLoggedOn.bind(this));
+		this.client.on('disconnected', this.onClientDissconnected.bind(this));
 	}
 
 	initOperation(cb) {
@@ -84,7 +86,15 @@ class TradeBot {
 
 		this.client.setPersona(SteamUser.Steam.EPersonaState.Online);
 
-		this.client.on('webSession', this.onClientLoggedOn.bind(this));
+		this.client.on('webSession', this.onClientWebSession.bind(this));
+	}
+
+	onClientDissconnected(eresult, msg) {
+		console.log(`TradeBot ${this.logOnOptions.accountName} disconnected.`);
+
+		this.registry.unRegisterBot(this);
+
+		console.log(`TradeBot ${this.logOnOptions.accountName} removed from registry.`);
 	}
 
 	onClientWebSession(sessionID, webCookie) {
@@ -109,6 +119,10 @@ class TradeBot {
 		this.offers.setup(this.webSession);
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} ready to trade.`);
+
+		this.registry.registerBot(this);
+
+		console.log(`TradeBot ${this.logOnOptions.accountName} added to registry.`);
 	}
 }
 
