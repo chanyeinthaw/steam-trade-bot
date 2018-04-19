@@ -40,3 +40,5 @@ class Registry {
 		}
 	}
 }
+
+module.exports = Registry;
