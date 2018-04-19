@@ -1,5 +1,6 @@
 const express = require('express');
 const routes = require('./routes.js');
+const Handler = require('./handler');
 
 class APIEndpoint {
 	constructor (port, registry) {
@@ -7,9 +8,8 @@ class APIEndpoint {
 		this.port = port;
 		this.app = express();
 
-		for(let i in routes) {
-			this.app.get(i, routes[i]);
-		}
+		this.handler = new Handler(this.botRegistry);
+		routes(this.app, this.handler);
 	}
 
 	listen() {

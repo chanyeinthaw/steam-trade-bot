@@ -2,7 +2,11 @@ const toSteamid = require('../../to-steamid');
 const validate = require('../validate');
 
 class Handler {
-	static requestItemTrade(req, res) {
+	constructor(registry) {
+		this.registry = registry;
+	}
+
+	requestItemTrade(req, res) {
 		let query = req.query;
 
 		let requires = [
@@ -14,6 +18,8 @@ class Handler {
 		if (errors) {
 			return res.send(errors);
 		}
+
+		console.log(this);
 
 		res.send(query);
 	}
