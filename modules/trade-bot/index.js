@@ -21,14 +21,13 @@ class TradeBot {
 
 		this.client.on('loggedOn', this.onClientLoggedOn.bind(this));
 		this.client.on('disconnected', this.onClientDissconnected.bind(this));
+		this.client.on('error', (error) => {
+			Logger.log(Logger.Error, 'LogOnException', error);
+		});
 	}
 
 	initOperation(cb) {
-		try {
-			this.client.logOn(this.logOnOptions);
-		} catch (e) {
-			Logger.log(Logger.Error, 'LogOnException', e);
-		}
+		this.client.logOn(this.logOnOptions);
 
 		if (typeof cb === 'function') {
 			return cb();
@@ -51,12 +50,13 @@ class TradeBot {
 		return this.logOnOptions.accountName;
 	}
 
-	sendTradeOffer(partnerSteamId, items, message, callback) {
+	sendTradeOffer(partnerSteamId, accessToken, items, message, callback) {
 		this.tradeOfferCallback = callback;
 		this.tradeOfferOptions = {
 			steamId: partnerSteamId,
 			items: items,
-			message: message
+			message: message,
+			accessToken: accessToken
 		};
 
 		if (this.client.steamID === null) {
@@ -71,18 +71,19 @@ class TradeBot {
 			let offerOptions = {
 				message: this.tradeOfferOptions.message,
 				partnerSteamId: this.tradeOfferOptions.steamId,
+				accessToken: this.tradeOfferOptions.accessToken,
 				itemsFromThem: this.tradeOfferOptions.items,
 				itemsFromMe: []
 			};
 
-			this.isBusy = false;
+			this.isBusy = true;
 
 			this.offers.makeOffer(offerOptions, this.onMakeOfferResponse.bind(this));
 		}
 	}
 
 	onMakeOfferResponse(err, body) {
-		this.isBusy = true;
+		this.isBusy = false;
 
 		if (err) {
 			console.log(`TradeBot ${this.logOnOptions.accountName} error: ${err.message}`);
@@ -90,7 +91,7 @@ class TradeBot {
 			return this.tradeOfferCallback(err, null);
 		}
 
-		console.log(`TradeBot ${this.logOnOptions.accountName} success: ${body}`);
+		console.log(`TradeBot ${this.logOnOptions.accountName} success: offer id is ${body.tradeofferid}`);
 		this.tradeOfferCallback(null, body);
 	}
 
