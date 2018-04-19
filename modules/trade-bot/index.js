@@ -30,6 +30,10 @@ class TradeBot {
 		return !this.isBusy;
 	}
 
+	makeBotBusy() {
+		this.isBusy = true;
+	}
+
 	getBotName() {
 		return this.logOnOptions.accountName;
 	}
