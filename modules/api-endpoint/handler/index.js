@@ -6,7 +6,7 @@ class Handler {
 		this.registry = registry;
 	}
 
-	requestItemTrade(req, res) {
+	requestItems(req, res) {
 		let query = req.query;
 
 		let requires = [
@@ -27,7 +27,7 @@ class Handler {
 
 		let idleBot = this.registry.getIdleBot();
 
-		idleBot.sendTradeOffer(toSteamid(query.partner), JSON.parse(query.items), idleBot.getBotName(), (err, body) => {
+		idleBot.sendTradeOffer(toSteamid(query.partner), query.token, JSON.parse(query.items), idleBot.getBotName(), (err, body) => {
 			if (err) {
 				res.send(err.message);
 			} else {
