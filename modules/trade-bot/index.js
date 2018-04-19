@@ -50,11 +50,12 @@ class TradeBot {
 		return this.logOnOptions.accountName;
 	}
 
-	sendTradeOffer(partnerSteamId, accessToken, items, message, callback) {
+	sendTradeOffer(partnerSteamId, accessToken, itemsFromThem, itemsFromMe, message, callback) {
 		this.tradeOfferCallback = callback;
 		this.tradeOfferOptions = {
 			steamId: partnerSteamId,
-			items: items,
+			itemsFromMe: itemsFromMe,
+			itemsFromThem: itemsFromThem,
 			message: message,
 			accessToken: accessToken
 		};
@@ -72,8 +73,8 @@ class TradeBot {
 				message: this.tradeOfferOptions.message,
 				partnerSteamId: this.tradeOfferOptions.steamId,
 				accessToken: this.tradeOfferOptions.accessToken,
-				itemsFromThem: this.tradeOfferOptions.items,
-				itemsFromMe: []
+				itemsFromThem: this.tradeOfferOptions.itemsFromThem,
+				itemsFromMe: this.tradeOfferOptions.itemsFromMe
 			};
 
 			this.isBusy = true;
