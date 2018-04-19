@@ -2,7 +2,8 @@ const express = require('express');
 const routes = require('./routes.js');
 
 class APIEndpoint {
-	constructor (port) {
+	constructor (port, registry) {
+		this.botRegistry = registry;
 		this.port = port;
 		this.app = express();
 
