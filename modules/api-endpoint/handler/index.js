@@ -19,9 +19,23 @@ class Handler {
 			return res.send(errors);
 		}
 
-		console.log(this);
+		if (this.registry.getIdleBotCount() <= 0) {
+			return res.send({
+				error: 'Bots are busy or offline.'
+			});
+		}
 
-		res.send(query);
+		let idleBot = this.registry.getIdleBot();
+
+		idleBot.sendTradeOffer(toSteamid(query.partner), JSON.parse(query.items), idleBot.getBotName(), (err, body) => {
+			if (err) {
+				res.send(err.message);
+			} else {
+				res.send(JSON.stringify(body));
+			}
+		});
+
+		idleBot.releaseBot();
 	}
 }
 
