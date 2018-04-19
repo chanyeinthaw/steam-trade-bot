@@ -31,7 +31,7 @@ class Registry {
 
 	getIdleBot() {
 		for(let i in this.bots) {
-			let bot = bots[i];
+			let bot = this.bots[i];
 
 			if (bot.isBotIdle()) {
 				bot.makeBotBusy();
