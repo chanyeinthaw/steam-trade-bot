@@ -30,6 +30,10 @@ class TradeBot {
 		return !this.isBusy;
 	}
 
+	getBotName() {
+		return this.logOnOptions.accountName;
+	}
+
 	sendTradeOffer(partnerSteamId, items, message) {
 		this.tradeOfferOptions = {
 			steamId: partnerSteamId,
