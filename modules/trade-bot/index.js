@@ -15,6 +15,7 @@ class TradeBot {
 		this.client = new SteamUser();
 		this.offers = new SteamTradeOffers();
 		this.tradeOfferOptions = null;
+		this.tradeOfferCallback = null;
 		this.isBusy = false;
 
 		this.client.on('loggedOn', this.onClientLoggedOn.bind(this));
@@ -44,7 +45,8 @@ class TradeBot {
 		return this.logOnOptions.accountName;
 	}
 
-	sendTradeOffer(partnerSteamId, items, message) {
+	sendTradeOffer(partnerSteamId, items, message, callback) {
+		this.tradeOfferCallback = callback;
 		this.tradeOfferOptions = {
 			steamId: partnerSteamId,
 			items: items,
@@ -79,10 +81,11 @@ class TradeBot {
 		if (err) {
 			console.log(`TradeBot ${this.logOnOptions.accountName} error: ${err.message}`);
 
-			return;
+			return this.tradeOfferCallback(err, null);
 		}
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} success: ${body}`);
+		this.tradeOfferCallback(null, body);
 	}
 
 	onClientLoggedOn() {
