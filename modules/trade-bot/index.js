@@ -2,6 +2,7 @@ const SteamUser = require('steam-user');
 const getSteamAPIKey = require('steam-web-api-key');
 const SteamTradeOffers = require('steam-tradeoffers');
 const Registry = require('./registry');
+const Logger = require('../logger');
 
 class TradeBot {
 	constructor(accountName, password, twoFactorCode, registry) {
@@ -23,7 +24,12 @@ class TradeBot {
 	}
 
 	initOperation(cb) {
-		this.client.logOn(this.logOnOptions);
+		try {
+			this.client.logOn(this.logOnOptions);
+		} catch (e) {
+			Logger.log(Logger.Error, 'LogOnException', e);
+		}
+
 		if (typeof cb === 'function') {
 			return cb();
 		}
