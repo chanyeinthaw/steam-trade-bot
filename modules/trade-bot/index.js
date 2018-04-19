@@ -102,3 +102,5 @@ class TradeBot {
 		console.log(`TradeBot ${this.logOnOptions.accountName} ready to trade.`);
 	}
 }
+
+module.exports = TradeBot;
