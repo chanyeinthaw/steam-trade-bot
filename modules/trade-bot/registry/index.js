@@ -19,7 +19,7 @@ class Registry {
 	getIdleBotCount() {
 		let count = 0;
 		for(let i in this.bots) {
-			let bot = bots[i];
+			let bot = this.bots[i];
 
 			if (bot.isBotIdle()) {
 				count ++;
