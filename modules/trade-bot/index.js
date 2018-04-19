@@ -1,6 +1,7 @@
 const SteamUser = require('steam-user');
 const getSteamAPIKey = require('steam-web-api-key');
 const SteamTradeOffers = require('steam-tradeoffers');
+const Registry = require('./registry');
 
 class TradeBot {
 	constructor(accountName, password, twoFactorCode) {
@@ -103,4 +104,7 @@ class TradeBot {
 	}
 }
 
-module.exports = TradeBot;
+module.exports = {
+	Bot: TradeBot,
+	Registry: Registry
+};
