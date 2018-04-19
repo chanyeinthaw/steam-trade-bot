@@ -14,7 +14,7 @@ module.exports = {
 			.replace(/,/g, ' ')
 			.replace(/"|{|}/g, '');
 
-		let log = `${new Date(Date.now())} - ${level}: ${message} ${object}\n`;
+		let log = `${new Date(Date.now())} - ${level}: ${message} ${JSON.stringify(object)}\n`;
 		Fs.appendFile('logs/application.logs', log, () => {});
 	}
 };
