@@ -5,7 +5,7 @@ module.exports = (app, handler) => {
 	app.use((req, res, next) => {
 		const check = [
 			'/gamesparks/register',
-			'/gamesparks/login',
+			'/gamesparks/call-procedure',
 		];
 
 		let url = req.url;
@@ -75,4 +75,5 @@ module.exports = (app, handler) => {
 	app.get('/test-endpoint', handler.testEndpoint.bind(handler));
 
 	app.get('/gamesparks/register', handler.gamesparksRegister.bind(handler));
+	app.get('/gamesparks/call-procedure', handler.callProcedure.bind(handler));
 };
