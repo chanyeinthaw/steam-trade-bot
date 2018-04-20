@@ -1,4 +1,4 @@
-module.exports = (res, req) => {
+module.exports = (res, req, modules) => {
 	let query = req.query;
 
 	let requires = [
@@ -11,13 +11,13 @@ module.exports = (res, req) => {
 		return res.send(errors);
 	}
 
-	if (this.registry.getIdleBotCount() <= 0) {
+	if (modules.registry.getIdleBotCount() <= 0) {
 		return res.send({
 			error: 'Bots are busy or offline.'
 		});
 	}
 
-	let idleBot = this.registry.getIdleBot();
+	let idleBot = modules.registry.getIdleBot();
 
 	let message = Buffer.from(idleBot.getBotName() + Date.now().toString())
 		.toString('base64')
