@@ -4,6 +4,7 @@ const Requests = {
 	Authentication: '.AuthenticationRequest',
 	AccountDetailsRequest: '.AccountDetailsRequest',
 	ChangeUserDetailsRequest: '.ChangeUserDetailsRequest',
+	RegistrationRequest: '.RegistrationRequest'
 };
 
 class Gamesparks {
@@ -14,7 +15,7 @@ class Gamesparks {
 
 		this.config = config;
 
-		this.gameSparks.initPreviewListener(apiKey, secret, socketCount, this.onMessage.bind(this), this.onOperate.bind(this), this.onError.bind(this));
+		this.gameSparks.initPreviewListener(config.apiKey, config.secret, config.socketCount, this.onMessage.bind(this), this.onOperate.bind(this), this.onError.bind(this));
 	}
 
 	authenticateUser(userName, password, callback) {
@@ -25,6 +26,16 @@ class Gamesparks {
 			};
 
 			this.gameSparks.sendAs(null, Requests.Authentication, {userName: userName, password: password}, authResponse.bind(this));
+		}
+	}
+
+	registerUser(displayName, userName, password, callback) {
+		if (this.readyState) {
+			this.gameSparks.sendAs(null, Requests.RegistrationRequest, {
+				userName: userName,
+				password: password,
+				displayName: displayName
+			}, callback);
 		}
 	}
 
