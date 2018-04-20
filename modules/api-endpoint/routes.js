@@ -51,7 +51,14 @@ module.exports = (app, handler) => {
 
 
 		try {
-			JSON.parse(req.query.credentials);
+			let cred = JSON.parse(req.query.credentials);
+
+			if (!(cred.hasOwnProperty('userName') && cred.hasOwnProperty('password'))) {
+				res.send({
+					error: 'invalid credentials'
+				});
+				return;
+			}
 		} catch (e) {
 			res.send({
 				error: 'invalid credentials'
