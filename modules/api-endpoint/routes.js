@@ -40,10 +40,32 @@ module.exports = (app, handler) => {
 	});
 	//endregion
 
+	//region GAMESPARKS LOGIN MW
+	app.use('/gamesparks/*', (req, res, next) => {
+		if (!req.query.hasOwnProperty('credentials')) {
+			res.send({
+				error: 'credentials required'
+			});
+			return;
+		}
+
+
+		try {
+			JSON.parse(req.query.credentials);
+		} catch (e) {
+			res.send({
+				error: 'invalid credentials'
+			});
+			return;
+		}
+
+		next();
+	});
+	//endregion
+
 	app.get('/request-actions', handler.requestItems.bind(handler));
 	app.get('/send-actions', handler.sendItems.bind(handler));
 	app.get('/test-endpoint', handler.testEndpoint.bind(handler));
 
 	app.get('/gamesparks/register', handler.gamesparksRegister.bind(handler));
-	app.get('/gamesparks/login', handler.gamesparksLogin.bind(handler));
 };
