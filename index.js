@@ -14,7 +14,7 @@ class SteamTradeBot {
 			gamesparks: this.gamesparks
 		});
 
-		this.registerBotList();
+		//this.registerBotList();
 
 		this.apiEndpoint.listen();
 	}
@@ -22,7 +22,7 @@ class SteamTradeBot {
 	registerBotList() {
 		console.log(`SteamTradeBot creating bots`);
 		for(let i in ENV.bots) {
-			let botConfig = bots[i];
+			let botConfig = ENV.bots[i];
 			let tradeBot = new TradeBot.Bot(botConfig.accountName, botConfig.password, botConfig.twoFactorCode, this.botRegistry);
 
 			tradeBot.initOperation();
