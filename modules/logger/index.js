@@ -1,4 +1,3 @@
-const Winston = require('winston');
 const Fs = require('fs');
 
 module.exports = {
