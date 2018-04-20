@@ -1,13 +1,18 @@
 const Fs = require('fs');
 const TradeBot = require('./modules/trade-bot');
 const APIEndpoint = require('./modules/api-endpoint');
+const GamesparksEndpoint = require('./modules/gamesparks-endpoint');
 
 const ENV = JSON.parse(Fs.readFileSync("env.json"));
 
 class SteamTradeBot {
 	constructor() {
+		this.gamesparks = new GamesparksEndpoint.Gamesparks(ENV.gamesparks);
 		this.botRegistry = new TradeBot.Registry();
-		this.apiEndpoint = new APIEndpoint(3000, this.botRegistry);
+		this.apiEndpoint = new APIEndpoint(3000, {
+			registry: this.botRegistry,
+			gamesparks: this.gamesparks
+		});
 
 		this.registerBotList();
 
