@@ -7,7 +7,7 @@ const testEndpoint = require('../actions/test-endpoint.js');
 
 const gamespark = {
 	register: require('../../gamesparks-endpoint/api-actions/register.js'),
-	login: require('../../gamesparks-endpoint/api-actions/login.js')
+	callProcedure: require('../../gamesparks-endpoint/api-actions/call-procedure.js')
 };
 
 class Handler {
@@ -25,6 +25,10 @@ class Handler {
 
 	gamesparksRegister(req, res) {
 		return gamespark.register(req, res, this.modules);
+	}
+
+	callProcedure(req, res) {
+		return gamespark.callProcedure(req, res, this.modules);
 	}
 
 	testEndpoint(req, res) {
