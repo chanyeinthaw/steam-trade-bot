@@ -7,16 +7,12 @@ const Requests = {
 };
 
 class Gamesparks {
-	constructor(apiKey, secret, socketCount) {
+	constructor(config) {
 		this.gameSparks = require('gamesparks-node');
 		this.readyState = false;
 		this.currentUser = null;
 
-		this.config = {
-			apiKey: apiKey,
-			secret: secret,
-			socketCount: socketCount
-		};
+		this.config = config;
 
 		this.gameSparks.initPreviewListener(apiKey, secret, socketCount, this.onMessage.bind(this), this.onOperate.bind(this), this.onError.bind(this));
 	}
