@@ -11,8 +11,6 @@ class Gamesparks {
 	constructor(config) {
 		this.gameSparks = require('gamesparks-node');
 		this.readyState = false;
-		this.currentUser = null;
-
 		this.config = config;
 
 		this.gameSparks.initPreviewListener(config.apiKey, config.secret, config.socketCount, this.onMessage.bind(this), this.onOperate.bind(this), this.onError.bind(this));
@@ -20,12 +18,7 @@ class Gamesparks {
 
 	authenticateUser(userName, password, callback) {
 		if (this.readyState) {
-			let authResponse = (err, user) => {
-				this.currentUser = user;
-				callback(err,user);
-			};
-
-			this.gameSparks.sendAs(null, Requests.Authentication, {userName: userName, password: password}, authResponse.bind(this));
+			this.gameSparks.sendAs(null, Requests.Authentication, {userName: userName, password: password}, callback);
 		}
 	}
 
@@ -39,9 +32,9 @@ class Gamesparks {
 		}
 	}
 
-	executeCloudFunction(cloudFunction, data, callback) {
-		if (this.readyState && this.currentUser !== null) {
-			this.gameSparks.sendAs(this.currentUser.userId, cloudFunction, data, callback);
+	executeCloudFunction(userId, cloudFunction, data, callback) {
+		if (this.readyState) {
+			this.gameSparks.sendAs(userId, cloudFunction, data, callback);
 		}
 	}
 
