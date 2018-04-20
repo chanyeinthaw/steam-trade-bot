@@ -30,16 +30,10 @@ module.exports = (req, res, modules) => {
 		return;
 	}
 	//endregion
-	console.log('credentials');
-	console.log(credentials);
 	modules.gamesparks.authenticateUser(credentials.userName, credentials.password, (err, user) => {
-		console.log('authuser');
-		console.log(err, user);
 		if (err) return res.send(err);
 
 		modules.gamesparks.executeCloudFunction(user.userId, query.request, data, (err, body) => {
-			console.log('execcu');
-			console.log(err, user);
 			if (err) return res.send(err);
 
 			res.send(body);
