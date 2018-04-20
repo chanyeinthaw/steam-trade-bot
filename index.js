@@ -2,6 +2,8 @@ const Fs = require('fs');
 const TradeBot = require('./modules/trade-bot');
 const APIEndpoint = require('./modules/api-endpoint');
 
+const ENV = JSON.parse(Fs.readFileSync("env.json"));
+
 class SteamTradeBot {
 	constructor() {
 		this.botRegistry = new TradeBot.Registry();
@@ -13,12 +15,8 @@ class SteamTradeBot {
 	}
 
 	registerBotList() {
-		let bots = Fs.readFileSync('bots.json');
-
-		bots = JSON.parse(bots);
-
 		console.log(`SteamTradeBot creating bots`);
-		for(let i in bots) {
+		for(let i in ENV.bots) {
 			let botConfig = bots[i];
 			let tradeBot = new TradeBot.Bot(botConfig.accountName, botConfig.password, botConfig.twoFactorCode, this.botRegistry);
 
