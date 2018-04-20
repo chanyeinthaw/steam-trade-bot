@@ -27,10 +27,6 @@ class Handler {
 		return gamespark.register(req, res, this.modules);
 	}
 
-	gamesparksLogin(req, res) {
-		return gamespark.login(req, res, this.modules);
-	}
-
 	testEndpoint(req, res) {
 		return testEndpoint(req, res, this.modules);
 	}
