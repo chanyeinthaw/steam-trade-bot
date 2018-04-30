@@ -14,7 +14,7 @@ class SteamTradeBot {
 			gamesparks: this.gamesparks
 		});
 
-		//this.registerBotList();
+		this.registerBotList();
 
 		this.apiEndpoint.listen();
 	}
