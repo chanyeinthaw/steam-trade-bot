@@ -1,6 +1,3 @@
-const toSteamid = require('../../to-steamid');
-const validate = require('../validate');
-
 const requestItems = require('../actions/request-items.js');
 const sendItems = require('../actions/send-items.js');
 const testEndpoint = require('../actions/test-endpoint.js');

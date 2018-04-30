@@ -1,3 +1,5 @@
+const validate = require('../validate');
+
 module.exports = (req, res, modules) => {
 	let query = req.query;
 
