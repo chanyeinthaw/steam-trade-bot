@@ -70,8 +70,8 @@ module.exports = (app, handler) => {
 	});
 	//endregion
 
-	app.get('/request-actions', handler.requestItems.bind(handler));
-	app.get('/send-actions', handler.sendItems.bind(handler));
+	app.get('/request-items', handler.requestItems.bind(handler));
+	app.get('/send-items', handler.sendItems.bind(handler));
 	app.get('/test-endpoint', handler.testEndpoint.bind(handler));
 
 	app.get('/gamesparks/register', handler.gamesparksRegister.bind(handler));
