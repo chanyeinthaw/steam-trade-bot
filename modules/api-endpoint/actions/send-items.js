@@ -1,4 +1,5 @@
 const validate = require('../validate');
+const toSteamid = require('../../to-steamid');
 
 module.exports = (req, res, modules) => {
 	let query = req.query;
