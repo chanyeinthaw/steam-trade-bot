@@ -1,7 +1,7 @@
 const validate = require('../validate');
 const toSteamid = require('../../to-steamid');
 
-module.exports = (req, res, modules) => {
+module.exports = async (req, res, modules) => {
 	let query = req.query;
 
 	let requires = [
@@ -32,20 +32,13 @@ module.exports = (req, res, modules) => {
 		.toString('base64')
 		.replace(/=/g, '');
 
-	idleBot.sendTradeOffer(toSteamid(query.partner),
-		query.token,
-		[],
-		JSON.parse(query.items),
-		message,
-		(err, body) => {
-			if (err) {
-				res.send(err.message);
-			} else {
+	try {
+		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, [], JSON.parse(query.items), message);
 
-
-				res.send(JSON.stringify(body));
-			}
-		});
+		res.send(JSON.stringify(body));
+	} catch(e) {
+		res.send(e.message);
+	}
 
 	idleBot.releaseBot();
 };

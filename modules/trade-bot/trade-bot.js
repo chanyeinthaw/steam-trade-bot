@@ -8,29 +8,30 @@ class TradeBot {
 		this.logOnOptions = {
 			accountName: accountName,
 			password: password,
-			twoFactorCode: twoFactorCode
+			twoFactorCode: twoFactorCode,
+			rememberPassword: true
 		};
 
 		this.registry = registry;
 		this.client = new SteamUser();
 		this.offers = new SteamTradeOffers();
-		this.tradeOfferOptions = null;
-		this.tradeOfferCallback = null;
 		this.isBusy = false;
 
 		this.client.on('loggedOn', this.onClientLoggedOn.bind(this));
+		this.client.on('webSession', this.onClientWebSession.bind(this));
 		this.client.on('disconnected', this.onClientDissconnected.bind(this));
 		this.client.on('error', (error) => {
 			Logger.log(Logger.Error, 'LogOnException', error);
 		});
 	}
 
-	initOperation(cb) {
+	initOperation() {
 		this.client.logOn(this.logOnOptions);
+	}
 
-		if (typeof cb === 'function') {
-			return cb();
-		}
+	relogBot() {
+		this.registry.unRegisterBot(this);
+		this.client.relog();
 	}
 
 	isBotIdle() {
@@ -49,62 +50,10 @@ class TradeBot {
 		return this.logOnOptions.accountName;
 	}
 
-	sendTradeOffer(partnerSteamId, accessToken, itemsFromThem, itemsFromMe, message, callback) {
-		this.tradeOfferCallback = callback;
-		this.tradeOfferOptions = {
-			steamId: partnerSteamId,
-			itemsFromMe: itemsFromMe,
-			itemsFromThem: itemsFromThem,
-			message: message,
-			accessToken: accessToken
-		};
-
-		if (this.client.steamID === null) {
-			return this.initOperation(this.doSendTradeOffer.bind(this));
-		}
-
-		return this.doSendTradeOffer();
-	}
-
-	doSendTradeOffer() {
-		if (this.tradeOfferOptions !== null) {
-			let offerOptions = {
-				message: this.tradeOfferOptions.message,
-				partnerSteamId: this.tradeOfferOptions.steamId,
-				accessToken: this.tradeOfferOptions.accessToken,
-				itemsFromThem: this.tradeOfferOptions.itemsFromThem,
-				itemsFromMe: this.tradeOfferOptions.itemsFromMe
-			};
-
-			this.isBusy = true;
-
-			this.offers.makeOffer(offerOptions, this.onMakeOfferResponse.bind(this));
-		}
-	}
-
-	onTradeOfferResponse(steamId, response, restrictions) {
-		console.log(steamId, response, restrictions);
-	}
-
-	onMakeOfferResponse(err, body) {
-		this.isBusy = false;
-
-		if (err) {
-			console.log(`TradeBot ${this.logOnOptions.accountName} error: ${err.message}`);
-
-			return this.tradeOfferCallback(err, null);
-		}
-
-		console.log(`TradeBot ${this.logOnOptions.accountName} success: offer id is ${body.tradeofferid}`);
-		this.tradeOfferCallback(null, body);
-	}
-
 	onClientLoggedOn() {
 		console.log(`TradeBot ${this.logOnOptions.accountName} logged on.`);
 
 		this.client.setPersona(SteamUser.Steam.EPersonaState.Online);
-
-		this.client.on('webSession', this.onClientWebSession.bind(this));
 	}
 
 	onClientDissconnected(eresult, msg) {
@@ -115,7 +64,7 @@ class TradeBot {
 		console.log(`TradeBot ${this.logOnOptions.accountName} removed from registry.`);
 	}
 
-	onClientWebSession(sessionID, webCookie) {
+	async onClientWebSession(sessionID, webCookie) {
 		console.log(`TradeBot ${this.logOnOptions.accountName} web session started.`);
 
 		this.webSession = {
@@ -124,23 +73,64 @@ class TradeBot {
 		};
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} requesting api key.`);
-		getSteamAPIKey(this.webSession, this.onGetSteamAPIKey.bind(this));
+
+		try {
+			this.webSession.APIKey = await this.getSteamApiKey(this.webSession);
+
+			console.log(`TradeBot ${this.logOnOptions.accountName} api key acquired.`);
+			console.log(`TradeBot ${this.logOnOptions.accountName} storing webSessionInfo.`);
+			console.log(`TradeBot ${this.logOnOptions.accountName} setting up trade offer option.`);
+
+			this.offers.setup(this.webSession);
+
+			console.log(`TradeBot ${this.logOnOptions.accountName} ready to trade.`);
+
+			this.registry.registerBot(this);
+
+			console.log(`TradeBot ${this.logOnOptions.accountName} added to registry.`);
+		} catch (e) {
+			console.log(`TradeBot ${this.logOnOptions.accountName} api key get error.`);
+		}
 	}
 
-	onGetSteamAPIKey(err, APIKey) {
-		this.webSession.APIKey = APIKey;
+	async sendTradeOffer(partnerSteamId, accessToken, itemsFromThem, itemsFromMe, message) {
+		return new Promise((resolve, reject) => {
+			if (this.client.steamID === null) {
+				return reject(new Error('Client not connected'));
+			}
 
-		console.log(`TradeBot ${this.logOnOptions.accountName} api key acquired.`);
-		console.log(`TradeBot ${this.logOnOptions.accountName} storing webSessionInfo.`);
-		console.log(`TradeBot ${this.logOnOptions.accountName} setting up trade offer option.`);
+			let offerOptions = {
+				message: message,
+				partnerSteamId: partnerSteamId,
+				accessToken: accessToken,
+				itemsFromThem: itemsFromThem,
+				itemsFromMe: itemsFromMe
+			};
 
-		this.offers.setup(this.webSession);
+			this.isBusy = true;
 
-		console.log(`TradeBot ${this.logOnOptions.accountName} ready to trade.`);
+			this.offers.makeOffer(offerOptions,(err, body) => {
+				this.isBusy = false;
 
-		this.registry.registerBot(this);
+				if (err) {
+					console.log(`TradeBot ${this.logOnOptions.accountName} error: ${err.message}`);
 
-		console.log(`TradeBot ${this.logOnOptions.accountName} added to registry.`);
+					return reject(err);
+				}
+
+				console.log(`TradeBot ${this.logOnOptions.accountName} success: offer id is ${body.tradeofferid}`);
+				resolve(body);
+			});
+		});
+	}
+
+	async getSteamApiKey(webSession) {
+		return new Promise((resolve, reject) => {
+			getSteamAPIKey(webSession, (err, APIKey) => {
+				if (err) reject(err);
+				else resolve(APIKey);
+			});
+		})
 	}
 }
 
