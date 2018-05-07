@@ -1,21 +1,19 @@
-module.exports = (req, res, modules) => {
+module.exports = async (req, res, modules) => {
 	let query = req.query;
 
 	let credentials = JSON.parse(query.credentials);
 
 	//region VALIDATION
 	if (!query.hasOwnProperty('request')) {
-		res.send({
+		return res.send({
 			error: 'request required'
 		});
-		return;
 	}
 
 	if (!query.hasOwnProperty('data')) {
-		res.send({
+		return res.send({
 			error: 'data required'
 		});
-		return;
 	}
 
 	let data = null;
@@ -30,13 +28,13 @@ module.exports = (req, res, modules) => {
 		return;
 	}
 	//endregion
-	modules.gamesparks.authenticateUser(credentials.userName, credentials.password, (err, user) => {
-		if (err) return res.send(err);
 
-		modules.gamesparks.executeCloudFunction(user.userId, query.request, data, (err, body) => {
-			if (err) return res.send(err);
+	try {
+		let user = await modules.gamesparks.authenticateUser(credentials.userName, credentials.password);
+		let body = await modules.gamesparks.executeCloudFunction(user.userId, query.request, data);
 
-			res.send(body);
-		});
-	});
+		res.send(body);
+	} catch(e) {
+		res.send({error: e.message});
+	}
 };
