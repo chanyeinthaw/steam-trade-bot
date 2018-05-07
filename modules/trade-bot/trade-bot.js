@@ -64,6 +64,17 @@ class TradeBot {
 		console.log(`TradeBot ${this.logOnOptions.accountName} removed from registry.`);
 	}
 
+	async getTradeOffer(offerId) {
+		return new Promise((resolve, reject) => {
+			this.offers.getOffer({
+				tradeOfferId: offerId
+			}, (err, res) => {
+				if (err) reject(err);
+				else resolve(res);
+			})
+		});
+	}
+
 	async onClientWebSession(sessionID, webCookie) {
 		console.log(`TradeBot ${this.logOnOptions.accountName} web session started.`);
 
@@ -75,7 +86,7 @@ class TradeBot {
 		console.log(`TradeBot ${this.logOnOptions.accountName} requesting api key.`);
 
 		try {
-			this.webSession.APIKey = await this.getSteamApiKey(this.webSession);
+			this.webSession.APIKey = await this.getSteamApiKey();
 
 			console.log(`TradeBot ${this.logOnOptions.accountName} api key acquired.`);
 			console.log(`TradeBot ${this.logOnOptions.accountName} storing webSessionInfo.`);
@@ -124,9 +135,9 @@ class TradeBot {
 		});
 	}
 
-	async getSteamApiKey(webSession) {
+	async getSteamApiKey() {
 		return new Promise((resolve, reject) => {
-			getSteamAPIKey(webSession, (err, APIKey) => {
+			getSteamAPIKey(this.webSession, (err, APIKey) => {
 				if (err) reject(err);
 				else resolve(APIKey);
 			});
