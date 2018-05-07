@@ -1,5 +1,5 @@
 const SteamUser = require('steam-user');
-const getSteamAPIKey = require('steam-web-api-key');
+// const getSteamAPIKey = require('steam-web-api-key');
 const SteamTradeOffers = require('steam-tradeoffers');
 const Logger = require('../logger');
 
@@ -75,7 +75,7 @@ class TradeBot {
 		});
 	}
 
-	async onClientWebSession(sessionID, webCookie) {
+	onClientWebSession(sessionID, webCookie) {
 		console.log(`TradeBot ${this.logOnOptions.accountName} web session started.`);
 
 		this.webSession = {
@@ -83,25 +83,26 @@ class TradeBot {
 			webCookie: webCookie,
 		};
 
-		console.log(`TradeBot ${this.logOnOptions.accountName} requesting api key.`);
+		// console.log(`TradeBot ${this.logOnOptions.accountName} requesting api key.`);
 
-		try {
-			this.webSession.APIKey = await this.getSteamApiKey();
+		// try {
+		// 	this.webSession.APIKey = await this.getSteamApiKey();
+		//
+		// 	console.log(`TradeBot ${this.logOnOptions.accountName} api key acquired.`);
+		// } catch (e) {
+		// 	console.log(`TradeBot ${this.logOnOptions.accountName} api key get error.`);
+		// }
 
-			console.log(`TradeBot ${this.logOnOptions.accountName} api key acquired.`);
-			console.log(`TradeBot ${this.logOnOptions.accountName} storing webSessionInfo.`);
-			console.log(`TradeBot ${this.logOnOptions.accountName} setting up trade offer option.`);
+		console.log(`TradeBot ${this.logOnOptions.accountName} storing webSessionInfo.`);
+		console.log(`TradeBot ${this.logOnOptions.accountName} setting up trade offer option.`);
 
-			this.offers.setup(this.webSession);
+		this.offers.setup(this.webSession);
 
-			console.log(`TradeBot ${this.logOnOptions.accountName} ready to trade.`);
+		console.log(`TradeBot ${this.logOnOptions.accountName} ready to trade.`);
 
-			this.registry.registerBot(this);
+		this.registry.registerBot(this);
 
-			console.log(`TradeBot ${this.logOnOptions.accountName} added to registry.`);
-		} catch (e) {
-			console.log(`TradeBot ${this.logOnOptions.accountName} api key get error.`);
-		}
+		console.log(`TradeBot ${this.logOnOptions.accountName} added to registry.`);
 	}
 
 	async sendTradeOffer(partnerSteamId, accessToken, itemsFromThem, itemsFromMe, message) {
@@ -135,14 +136,14 @@ class TradeBot {
 		});
 	}
 
-	async getSteamApiKey() {
-		return new Promise((resolve, reject) => {
-			getSteamAPIKey(this.webSession, (err, APIKey) => {
-				if (err) reject(err);
-				else resolve(APIKey);
-			});
-		})
-	}
+	// async getSteamApiKey() {
+	// 	return new Promise((resolve, reject) => {
+	// 		getSteamAPIKey(this.webSession, (err, APIKey) => {
+	// 			if (err) reject(err);
+	// 			else resolve(APIKey);
+	// 		});
+	// 	})
+	// }
 }
 
 module.exports = TradeBot;
