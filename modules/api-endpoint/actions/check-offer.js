@@ -20,6 +20,7 @@ module.exports = async (req, res, modules) => {
 	let adao = new modules.Data.AllowedItemsDao(modules.mysql);
 
 	try {
+		//region check internal tradeoffer status such as timelimit and validity
 		let check = await pdao.checkTradeOffer(query.offerid);
 
 		if (chec.length <= 0) return res.send({message: 'An error occurred.'});
@@ -33,6 +34,7 @@ module.exports = async (req, res, modules) => {
 
 			return res.send({message: 'Time limit exceed. Trade offer canceled.'});
 		}
+		//endregion
 
 		let offer = await bot.getTradeOffer(parseInt(query.offerid));
 
