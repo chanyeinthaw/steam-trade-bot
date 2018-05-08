@@ -9,6 +9,15 @@ class Registry {
 		this.botIndex[tradeBot.getBotName()] = this.bots.length - 1;
 	}
 
+	getBotByName(name) {
+		if (this.botIndex.hasOwnProperty(name)) {
+			let index = this.botIndex[name];
+			return this.bots[index];
+		}
+
+		return null;
+	}
+
 	unRegisterBot(tradeBot) {
 		if (this.botIndex.hasOwnProperty(tradeBot.getBotName())) {
 			let index = this.botIndex[tradeBot.getBotName()];
