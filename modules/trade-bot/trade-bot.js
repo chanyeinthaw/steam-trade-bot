@@ -1,37 +1,39 @@
-const SteamUser = require('steam-user');
-// const getSteamAPIKey = require('steam-web-api-key');
+const SteamTotp = require('steam-totp');
+const SteamCommunity = require('steamcommunity');
 const SteamTradeOffers = require('steam-tradeoffers');
-const Logger = require('../logger');
 
 class TradeBot {
-	constructor(accountName, password, twoFactorCode, registry) {
+	constructor(accountName, password, sharedSecret, idSecret, steamAPIKey ,registry) {
 		this.logOnOptions = {
 			accountName: accountName,
 			password: password,
-			twoFactorCode: twoFactorCode,
+			sharedSecret: sharedSecret,
+			identitySecret: idSecret,
 			rememberPassword: true
 		};
 
+		this.intervalId = null;
+
+		this.webSession = {
+			APIKey: steamAPIKey
+		};
+
 		this.registry = registry;
-		this.client = new SteamUser();
+		this.client = new SteamCommunity();
 		this.offers = new SteamTradeOffers();
 		this.isBusy = false;
 
-		this.client.on('loggedOn', this.onClientLoggedOn.bind(this));
-		this.client.on('webSession', this.onClientWebSession.bind(this));
-		this.client.on('disconnected', this.onClientDissconnected.bind(this));
-		this.client.on('error', (error) => {
-			Logger.log(Logger.Error, 'LogOnException', error);
+		this.client.on('sessionExpired', (err) => {
+			this.registry.unRegisterBot(this);
+			this.initOperation();
 		});
 	}
 
 	initOperation() {
-		this.client.logOn(this.logOnOptions);
-	}
+		this.logOnOptions.twoFactorCode = SteamTotp.generateAuthCode(this.logOnOptions.sharedSecret);
+		this.logOnOptions.twoFactorCode = '7gf6c';
 
-	relogBot() {
-		this.registry.unRegisterBot(this);
-		this.client.relog();
+		this.client.login(this.logOnOptions, this.onClientLoggedOn.bind(this));
 	}
 
 	isBotIdle() {
@@ -50,48 +52,27 @@ class TradeBot {
 		return this.logOnOptions.accountName;
 	}
 
-	onClientLoggedOn() {
+	onClientLoggedOn(err, sessionID, webCookie) {
+		if (err) {
+			console.log(`Tradebot ${this.logOnOptions.accountName} error logging on retrying in 30s.`);
+
+			this.intervalId = setInterval(() => {
+				this.registry.unRegisterBot(this);
+				this.initOperation();
+			}, 30000);
+
+			return;
+		}
+
+		if (this.intervalId !== null)
+			clearInterval(this.intervalId);
+
 		console.log(`TradeBot ${this.logOnOptions.accountName} logged on.`);
 
-		this.client.setPersona(SteamUser.Steam.EPersonaState.Online);
-	}
-
-	onClientDissconnected(eresult, msg) {
-		console.log(`TradeBot ${this.logOnOptions.accountName} disconnected.`);
-
-		this.registry.unRegisterBot(this);
-
-		console.log(`TradeBot ${this.logOnOptions.accountName} removed from registry.`);
-	}
-
-	async getTradeOffer(offerId) {
-		return new Promise((resolve, reject) => {
-			this.offers.getOffer({
-				tradeOfferId: offerId
-			}, (err, res) => {
-				if (err) reject(err);
-				else resolve(res);
-			})
-		});
-	}
-
-	onClientWebSession(sessionID, webCookie) {
 		console.log(`TradeBot ${this.logOnOptions.accountName} web session started.`);
 
-		this.webSession = {
-			sessionID: sessionID,
-			webCookie: webCookie,
-		};
-
-		// console.log(`TradeBot ${this.logOnOptions.accountName} requesting api key.`);
-
-		// try {
-		// 	this.webSession.APIKey = await this.getSteamApiKey();
-		//
-		// 	console.log(`TradeBot ${this.logOnOptions.accountName} api key acquired.`);
-		// } catch (e) {
-		// 	console.log(`TradeBot ${this.logOnOptions.accountName} api key get error.`);
-		// }
+		this.webSession.sessionID = sessionID;
+		this.webSession.webCookie = webCookie; console.log(this.webSession);
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} storing webSessionInfo.`);
 		console.log(`TradeBot ${this.logOnOptions.accountName} setting up trade offer option.`);
@@ -103,6 +84,30 @@ class TradeBot {
 		this.registry.registerBot(this);
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} added to registry.`);
+
+		this.releaseBot();
+	}
+
+	async getTradeOffer(offerId) {
+		return new Promise((resolve, reject) => {
+			this.offers.getOffer({
+				tradeofferid : offerId
+			}, (err, res) => {
+				if (err) reject(err);
+				else resolve(res);
+			})
+		});
+	}
+
+	async cancelTradeOffer(offerId) {
+		return new Promise((resolve, reject) => {
+			this.offers.cancelOffer({
+				tradeOfferId : offerId
+			}, (res) => {
+				if (!res) reject(new Error('Cancele trade offer fails.'))
+				else resolve(true);
+			})
+		});
 	}
 
 	async sendTradeOffer(partnerSteamId, accessToken, itemsFromThem, itemsFromMe, message) {
@@ -135,15 +140,6 @@ class TradeBot {
 			});
 		});
 	}
-
-	// async getSteamApiKey() {
-	// 	return new Promise((resolve, reject) => {
-	// 		getSteamAPIKey(this.webSession, (err, APIKey) => {
-	// 			if (err) reject(err);
-	// 			else resolve(APIKey);
-	// 		});
-	// 	})
-	// }
 }
 
 module.exports = TradeBot;
