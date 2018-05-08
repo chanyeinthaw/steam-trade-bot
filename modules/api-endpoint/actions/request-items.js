@@ -24,6 +24,7 @@ module.exports = async (req, res, modules) => {
 
 	let pdao = new modules.Data.PendingTradesDao(modules.mysql);
 	let adao = new modules.Data.AllowedItemsDao(modules.mysql);
+	let response = {status: 'failed', tradeofferid: null, message: ''};
 
 	try {
 		let items = JSON.parse(query.items);
@@ -45,15 +46,18 @@ module.exports = async (req, res, modules) => {
 		}
 		//endregion
 
+		if (allowItems.length <= 0) return res.send(response);
+
 		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, allowItems, [], message);
 
 		if (body.hasOwnProperty('tradeofferid'))
 			pdao.addTradeOffer(body.tradeofferid, idleBot.getBotName(), JSON.stringify(allowItems), 'in');
 
-		res.send(JSON.stringify(body));
+		response.status = 'success'; response.tradeofferid = body.tradeofferid;
 	} catch(e) {
-		res.send(e.message);
+		response.message = e.message;
 	}
 
+	res.send(response);
 	idleBot.releaseBot();
 };
