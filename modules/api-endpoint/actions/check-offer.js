@@ -17,6 +17,7 @@ module.exports = async (req, res, modules) => {
 	// endregion
 
 	let pdao = new modules.Data.PendingTradesDao(modules.mysql);
+	let adao = new modules.Data.AllowedItemsDao(modules.mysql);
 
 	try {
 		let check = await pdao.checkTradeOffer(query.offerid);
@@ -36,17 +37,27 @@ module.exports = async (req, res, modules) => {
 		let offer = await bot.getTradeOffer(parseInt(query.offerid));
 
 		if (offer.trade_offer_state === 3) {
-			let items = row.items;
+			let items = JSON.parse(row.items);
 			let isIncomingOffer = row.in_out === 'in';
 
-			// TODO get price for items
+			// region get total coins to credit
+			let assetsWithPrice = await adao.getPrice(items);
+			let totalCoins = 0;
+
+			for(let i = 0; i < assetsWithPrice.length; i++) {
+				totalCoins += assetsWithPrice[i].price;
+			}
+			// endregion
 
 			// TODO add to own inventory
 
-			// TODO finish update coins
+			//region update coins
+			if (!isIncomingOffer) totalCoins *= -1;
 
 			let user = await modules.gamesparks.authenticateUser(query.gsuser, query.gspassword);
-			let body = await modules.gamesparks.executeCloudFunction(user.userId, '.LogEventRequest', {eventKey: 'updateCoins',coins: 1000});
+			let body = await modules.gamesparks.executeCloudFunction(user.userId, '.LogEventRequest', {eventKey: 'updateCoins',coins: totalCoins});
+			//endregion
+
 			return res.send({message: 'Trade offer accepted. Account credited'});
 		}
 	} catch (e) { console.log(e) ;}
