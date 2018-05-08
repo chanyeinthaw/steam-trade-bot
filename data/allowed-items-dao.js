@@ -1,6 +1,6 @@
 const QUERYS = {
 	check: 'select assetid from allowed_items where assetid in (?)',
-	insert: 'INSERT into pending_trades SET ?'
+	getprice: 'select assetid, price from allowed_items where assetid in (?)'
 };
 
 class AllowedItemsDao {
@@ -9,29 +9,21 @@ class AllowedItemsDao {
 	}
 
 	checkItems(items) {
+		return this.conn.query(QUERYS.check, [AllowedItemsDao.getAssetIdArray(items)]);
+	}
+
+	static getAssetIdArray(items) {
 		let assetIdArray = [];
 
 		for(let i = 0; i < items.length; i++) {
 			assetIdArray.push(items[i].assetid);
 		}
 
-		return this.conn.query(QUERYS.check, [assetIdArray]);
+		return assetIdArray;
 	}
 
-	async addTradeOffer(offerId, botName, items, inout) {
-		try {
-			let result = await this.conn.query(QUERYS.insert, {
-				offerid: offerId,
-				botname: botName,
-				items: items,
-				in_out: inout,
-				expires_at: Date.now() + (15 * 60000)
-			});
-
-			return result.affectedRows > 0;
-		} catch (e) {
-			return false;
-		}
+	getPrice(items) {
+		return this.conn.query(QUERYS.getprice, [AllowedItemsDao.getAssetIdArray(items)]);
 	}
 }
 
