@@ -1,5 +1,6 @@
 const requestItems = require('../actions/request-items.js');
 const sendItems = require('../actions/send-items.js');
+const checkOffer = require('../actions/check-offer.js');
 const testEndpoint = require('../actions/test-endpoint.js');
 
 const gamespark = {
@@ -18,6 +19,10 @@ class Handler {
 
 	sendItems(req, res) {
 		return sendItems(req, res, this.modules);
+	}
+
+	checkOffer(req, res) {
+		return checkOffer(req, res, this.modules);
 	}
 
 	gamesparksRegister(req, res) {

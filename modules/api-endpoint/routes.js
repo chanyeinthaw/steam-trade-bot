@@ -72,6 +72,7 @@ module.exports = (app, handler) => {
 
 	app.get('/request-items', handler.requestItems.bind(handler));
 	app.get('/send-items', handler.sendItems.bind(handler));
+	app.get('/check-offer', handler.checkOffer.bind(handler));
 	app.get('/test-endpoint', handler.testEndpoint.bind(handler));
 
 	app.get('/gamesparks/register', handler.gamesparksRegister.bind(handler));
