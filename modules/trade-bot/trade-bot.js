@@ -71,7 +71,7 @@ class TradeBot {
 		console.log(`TradeBot ${this.logOnOptions.accountName} web session started.`);
 
 		this.webSession.sessionID = sessionID;
-		this.webSession.webCookie = webCookie; console.log(this.webSession);
+		this.webSession.webCookie = webCookie;
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} storing webSessionInfo.`);
 		console.log(`TradeBot ${this.logOnOptions.accountName} setting up trade offer option.`);
@@ -98,15 +98,8 @@ class TradeBot {
 		});
 	}
 
-	async cancelTradeOffer(offerId) {
-		return new Promise((resolve, reject) => {
-			this.offers.cancelOffer({
-				tradeOfferId : offerId
-			}, (res) => {
-				if (!res) reject(new Error('Cancele trade offer fails.'))
-				else resolve(true);
-			})
-		});
+	cancelTradeOffer(offerId) {
+		this.offers.cancelOffer({tradeOfferId : offerId}, (res) => {});
 	}
 
 	async sendTradeOffer(partnerSteamId, accessToken, itemsFromThem, itemsFromMe, message) {
