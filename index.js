@@ -5,6 +5,10 @@ const GamesparksEndpoint = require('./modules/gamesparks-endpoint');
 
 const ENV = JSON.parse(Fs.readFileSync("env.json"));
 
+process.on('unhandledRejection', error => {
+	console.log('unhandledRejection', error.message);
+});
+
 class SteamTradeBot {
 	constructor() {
 		this.gamesparks = new GamesparksEndpoint.Gamesparks(ENV.gamesparks);
@@ -23,7 +27,10 @@ class SteamTradeBot {
 		console.log(`SteamTradeBot creating bots`);
 		for(let i in ENV.bots) {
 			let botConfig = ENV.bots[i];
-			let tradeBot = new TradeBot.Bot(botConfig.accountName, botConfig.password, botConfig.twoFactorCode, this.botRegistry);
+			let tradeBot = new TradeBot.Bot(botConfig.accountName,
+				botConfig.password, botConfig.sharedSecret,
+				botConfig.identitySecret, ENV.steamAPIKey,
+				this.botRegistry, this.offerPoll);
 
 			tradeBot.initOperation();
 		}
