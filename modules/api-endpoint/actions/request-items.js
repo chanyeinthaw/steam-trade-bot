@@ -48,7 +48,7 @@ module.exports = async (req, res, modules) => {
 		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, allowItems, [], message);
 
 		if (body.hasOwnProperty('tradeofferid'))
-			pdao.addTradeOffer(body.tradeofferid, idleBot.getBotName(), query.items, 'in');
+			pdao.addTradeOffer(body.tradeofferid, idleBot.getBotName(), JSON.stringify(allowItems), 'in');
 
 		res.send(JSON.stringify(body));
 	} catch(e) {
