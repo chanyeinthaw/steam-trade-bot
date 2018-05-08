@@ -38,7 +38,7 @@ module.exports = async (req, res, modules) => {
 
 			for(let ii = 0; ii < allowedAssets.length; ii++) {
 				if (assetId == allowedAssets[ii].assetid) {
-					shouldRemove = true; break;
+					shouldAdd = true; break;
 				}
 			}
 
@@ -46,7 +46,10 @@ module.exports = async (req, res, modules) => {
 		}
 		//endregion
 
-		if (allowItems.length <= 0) return res.send(response);
+		if (allowItems.length <= 0) {
+			idleBot.releaseBot();
+			return res.send(response);
+		}
 
 		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, allowItems, [], message);
 
