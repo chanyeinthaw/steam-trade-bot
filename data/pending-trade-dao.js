@@ -1,5 +1,6 @@
 const QUERYS = {
 	check: 'SELECT botname, items, in_out expires_at FROM pending_trades WHERE offerid = ?',
+	delete: 'DELETE FROM pending_trades WHERE offerid = ?',
 	insert: 'INSERT into pending_trades SET ?'
 };
 
@@ -10,6 +11,10 @@ class PendingTradesDao {
 
 	checkTradeOffer(offerId) {
 		return this.conn.query(QUERYS.check, [offerId]);
+	}
+
+	deleteTradeOffer(offerId) {
+		return this.conn.query(QUERYS.delete, [offerId]);
 	}
 
 	async addTradeOffer(offerId, botName, items, inout) {

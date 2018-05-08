@@ -23,7 +23,7 @@ module.exports = async (req, res, modules) => {
 		//region check internal tradeoffer status such as timelimit and validity
 		let check = await pdao.checkTradeOffer(query.offerid);
 
-		if (chec.length <= 0) return res.send({message: 'An error occurred.'});
+		if (check.length <= 0) return res.send({message: 'Trade offer not found.'});
 
 		let row = check[0];
 
@@ -36,7 +36,8 @@ module.exports = async (req, res, modules) => {
 		}
 		//endregion
 
-		let offer = await bot.getTradeOffer(parseInt(query.offerid));
+		let resp = await bot.getTradeOffer(parseInt(query.offerid));
+		let offer = resp.response.offer;
 
 		if (offer.trade_offer_state === 3) {
 			let items = JSON.parse(row.items);
@@ -60,7 +61,19 @@ module.exports = async (req, res, modules) => {
 			let body = await modules.gamesparks.executeCloudFunction(user.userId, '.LogEventRequest', {eventKey: 'updateCoins',coins: totalCoins});
 			//endregion
 
+			pdao.deleteTradeOffer(query.offerid);
+
 			return res.send({message: 'Trade offer accepted. Account credited'});
+		} else if (offer.trade_offer_state === 6 || offer.trade_offer_state === 5 || offer.trade_offer_state === 7) {
+			pdao.deleteTradeOffer(query.offerid);
+
+			return res.send({message: `Trade offer ${query.offerid} cancled or expired.`});
+		} else if (offer.trade_offer_state === 2 || offer.trade_offer_state === 9) {
+			return res.send({message: `Trade offer ${query.offerid} active.`});
+		} else {
+			pdao.deleteTradeOffer(query.offerid);
+
+			return res.send({message: `Trade offer ${query.offerid} no longer valid.`});
 		}
 	} catch (e) { console.log(e) ;}
 
