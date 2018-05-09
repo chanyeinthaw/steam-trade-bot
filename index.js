@@ -3,7 +3,7 @@ const Mysql = require('promise-mysql');
 const TradeBot = require('./modules/trade-bot');
 const APIEndpoint = require('./modules/api-endpoint');
 const GamesparksEndpoint = require('./modules/gamesparks-endpoint');
-const Data = require('./data');
+const query = require('./query');
 
 const ENV = JSON.parse(Fs.readFileSync("env.json"));
 
@@ -20,7 +20,7 @@ class SteamTradeBot {
 				registry: this.botRegistry,
 				gamesparks: this.gamesparks,
 				mysql: conn,
-				Data: Data,
+				query: query,
 			});
 
 			this.registerBotList();
