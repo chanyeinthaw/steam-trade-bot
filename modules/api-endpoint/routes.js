@@ -6,6 +6,7 @@ module.exports = (app, handler) => {
 		const check = [
 			'/gamesparks/register',
 			'/gamesparks/call-procedure',
+			'/check-offer'
 		];
 
 		let url = req.url;
