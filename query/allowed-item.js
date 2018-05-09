@@ -40,8 +40,17 @@ class AllowedItem {
 		return assetIdArray;
 	}
 
-	getPrice(items) {
-		return this.conn.query(QUERYS.getprice, [AllowedItem.getAssetIdArray(items)]);
+	async getTotalCoins(items) {
+		try {
+			let assetsWithPrice = this.conn.query(QUERYS.getprice, [AllowedItem.getAssetIdArray(items)]);
+			let totalCoins = 0;
+
+			for(let i = 0; i < assetsWithPrice.length; i++) {
+				totalCoins += assetsWithPrice[i].price;
+			}
+
+			return totalCoins;
+		} catch (e) { console.log(e); return 0}
 	}
 }
 
