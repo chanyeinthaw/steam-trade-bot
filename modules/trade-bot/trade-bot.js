@@ -93,7 +93,7 @@ class TradeBot {
 				tradeofferid : offerId
 			}, (err, res) => {
 				if (err) reject(err);
-				else resolve(res);
+				else resolve(res.response.offer);
 			})
 		});
 	}
