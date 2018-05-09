@@ -1,6 +1,13 @@
 const validate = require('../validate');
 const toSteamid = require('../../to-steamid');
 
+class Msg {
+	constructor(message, state) {
+		this.message = message;
+		this.state = state;
+	}
+}
+
 module.exports = async (req, res, modules) => {
 	// region Validation
 	let query = req.query;
@@ -23,7 +30,7 @@ module.exports = async (req, res, modules) => {
 		//region check internal tradeoffer status such as timelimit and validity
 		let check = await pdao.checkTradeOffer(query.offerid);
 
-		if (check.length <= 0) return res.send({message: 'Trade offer not found.'});
+		if (check.length <= 0) return res.send(new Msg('Trade offer not found.', -1));
 
 		let row = check[0];
 
@@ -32,7 +39,7 @@ module.exports = async (req, res, modules) => {
 		if ( Date.now() >= row.expires_at) {
 			bot.cancelTradeOffer(parseInt(query.offerid));
 
-			return res.send({message: 'Time limit exceed. Trade offer canceled.'});
+			return res.send(new Msg('Time limit exceed. Trade offer canceled.', -2));
 		}
 		//endregion
 
@@ -55,19 +62,19 @@ module.exports = async (req, res, modules) => {
 
 			pdao.deleteTradeOffer(query.offerid);
 
-			return res.send({message: 'Trade offer accepted. Account credited'});
+			return res.send(new Msg(`Trade offer ${query.offerid} accepted. Account credited`, offer.trade_offer_state));
 		} else if (offer.trade_offer_state === 6 || offer.trade_offer_state === 5 || offer.trade_offer_state === 7) {
 			pdao.deleteTradeOffer(query.offerid);
 
-			return res.send({message: `Trade offer ${query.offerid} cancled or expired.`});
+			return res.send(new Msg(`Trade offer ${query.offerid} cancled or expired.`, offer.trade_offer_state));
 		} else if (offer.trade_offer_state === 2 || offer.trade_offer_state === 9) {
-			return res.send({message: `Trade offer ${query.offerid} active.`});
+			return res.send(new Msg(`Trade offer ${query.offerid} active.`, offer.trade_offer_state));
 		} else {
 			pdao.deleteTradeOffer(query.offerid);
 
-			return res.send({message: `Trade offer ${query.offerid} no longer valid.`});
+			return res.send(new Msg(`Trade offer ${query.offerid} no longer valid.`, offer.trade_offer_state));
 		}
 	} catch (e) { console.log(e) ;}
 
-	res.send({message: 'An error occurred.'});
+	res.send(new Msg(`An error occurred.`, -3));
 };
