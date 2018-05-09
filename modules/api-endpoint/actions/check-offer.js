@@ -36,21 +36,13 @@ module.exports = async (req, res, modules) => {
 		}
 		//endregion
 
-		let resp = await bot.getTradeOffer(parseInt(query.offerid));
-		let offer = resp.response.offer;
+		let offer = await bot.getTradeOffer(parseInt(query.offerid));
 
 		if (offer.trade_offer_state === 3) {
 			let items = JSON.parse(row.items);
 			let isIncomingOffer = row.in_out === 'in';
 
-			// region get total coins to credit
-			let assetsWithPrice = await adao.getPrice(items);
-			let totalCoins = 0;
-
-			for(let i = 0; i < assetsWithPrice.length; i++) {
-				totalCoins += assetsWithPrice[i].price;
-			}
-			// endregion
+			let totalCoins = await adao.getTotalCoins();
 
 			// TODO add to own inventory
 
