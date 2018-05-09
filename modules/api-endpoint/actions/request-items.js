@@ -22,29 +22,13 @@ module.exports = async (req, res, modules) => {
 		.toString('base64')
 		.replace(/=/g, '');
 
-	let pdao = new modules.Data.PendingTradesDao(modules.mysql);
-	let adao = new modules.Data.AllowedItemsDao(modules.mysql);
+	let pdao = new modules.query.PendingTrade(modules.mysql);
+	let adao = new modules.query.AllowedItem(modules.mysql);
 	let response = {status: 'failed', tradeofferid: null, message: ''};
 
 	try {
 		let items = JSON.parse(query.items);
-		let allowItems = [];
-		let allowedAssets = await adao.checkItems(items); // get allowed assetids of items array from database;
-
-		// region check if item is allowed
-		for(let i = 0; i < items.length; i++) {
-			let assetId = items[i].assetid;
-			let shouldAdd = false;
-
-			for(let ii = 0; ii < allowedAssets.length; ii++) {
-				if (assetId == allowedAssets[ii].assetid) {
-					shouldAdd = true; break;
-				}
-			}
-
-			if (shouldAdd) allowItems.push(items[i]);
-		}
-		//endregion
+		let allowItems = await adao.checkItems(items);
 
 		if (allowItems.length <= 0) {
 			idleBot.releaseBot();
