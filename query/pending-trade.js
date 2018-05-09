@@ -4,7 +4,7 @@ const QUERYS = {
 	insert: 'INSERT into pending_trades SET ?'
 };
 
-class PendingTradesDao {
+class PendingTrades {
 	constructor(conn) {
 		this.conn = conn;
 	}
@@ -34,4 +34,4 @@ class PendingTradesDao {
 	}
 }
 
-module.exports = PendingTradesDao;
+module.exports = PendingTrades;
