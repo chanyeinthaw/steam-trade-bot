@@ -16,8 +16,8 @@ module.exports = async (req, res, modules) => {
 	}
 	// endregion
 
-	let pdao = new modules.Data.PendingTradesDao(modules.mysql);
-	let adao = new modules.Data.AllowedItemsDao(modules.mysql);
+	let pdao = new modules.query.PendingTrade(modules.mysql);
+	let adao = new modules.query.AllowedItem(modules.mysql);
 
 	try {
 		//region check internal tradeoffer status such as timelimit and validity
