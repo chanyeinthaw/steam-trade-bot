@@ -1,4 +1,5 @@
 const execute = require('../execute.js');
+const jq = require('json-query');
 
 const QUERYS = {
 	check: 'select classid from allowed_items where classid in (?)',
@@ -46,7 +47,12 @@ module.exports = {
 			let totalCoins = 0;
 
 			for(let i = 0; i < assetsWithPrice.length; i++) {
-				totalCoins += assetsWithPrice[i].price;
+				let classid = assetsWithPrice[i].classid;
+				let sr = jq(`items[classid=${classid}].amount`, {data: {items: items}});
+
+				sr = sr.value;
+
+				totalCoins += assetsWithPrice[i].price * sr;
 			}
 
 			return totalCoins;
