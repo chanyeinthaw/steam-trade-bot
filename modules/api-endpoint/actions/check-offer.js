@@ -27,7 +27,6 @@ module.exports = async (req, res, modules) => {
 		allowedItem = modules.query.allowedItem;
 
 	try {
-		//region check internal tradeoffer status such as timelimit and validity
 		let check = await pendingTrade.checkTradeOffer(query.offerid);
 
 		if (check.length <= 0) return res.send(new Msg('Trade offer not found.', -1));
@@ -35,13 +34,6 @@ module.exports = async (req, res, modules) => {
 		let row = check[0];
 
 		let bot = modules.registry.getBotByName(row.botname);
-		if ( Date.now() >= row.expires_at) {
-			bot.cancelTradeOffer(parseInt(query.offerid));
-			pendingTrade.deleteTradeOffer(query.offerid);
-
-			return res.send(new Msg('Time limit exceed. Trade offer canceled.', -2));
-		}
-		//endregion
 
 		let offer = await bot.getTradeOffer(parseInt(query.offerid));
 
@@ -49,7 +41,7 @@ module.exports = async (req, res, modules) => {
 			let items = JSON.parse(row.items);
 			let isIncomingOffer = row.in_out === 'in';
 
-			let totalCoins = await allowedItem.getTotalCoins();
+			let totalCoins = await allowedItem.getTotalCoins(items);
 
 			// TODO add to own inventory
 

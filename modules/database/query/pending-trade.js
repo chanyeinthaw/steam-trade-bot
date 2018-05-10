@@ -1,42 +1,28 @@
-const connector = require('../connector.js');
+const execute = require('../execute.js');
 
 const QUERYS = {
-	check: 'SELECT botname, items, in_out, expires_at FROM pending_trades WHERE offerid = ?',
+	check: 'SELECT botname, items, in_out FROM pending_trades WHERE offerid = ?',
 	delete: 'DELETE FROM pending_trades WHERE offerid = ?',
 	insert: 'INSERT into pending_trades SET ?'
 };
 
 module.exports = {
 	async checkTradeOffer(offerId) {
-		let conn = await connector();
-		let res = conn.query(QUERYS.check, [offerId]);
-
-		conn.end();
-
-		return res;
+		return await execute(QUERYS.check, [offerId]);
 	},
 
 	async deleteTradeOffer(offerId) {
-		let conn = await connector();
-		let res = conn.query(QUERYS.delete, [offerId]);
-
-		conn.end();
-
-		return res;
+		return await execute(QUERYS.delete, [offerId]);
 	},
 
 	async addTradeOffer(offerId, botName, items, inout) {
 		try {
-			let conn = await connector();
-			let result = await conn.query(QUERYS.insert, {
+			let result = await execute(QUERYS.insert, {
 				offerid: offerId,
 				botname: botName,
 				items: items,
-				in_out: inout,
-				expires_at: Date.now() + (15 * 60000)
+				in_out: inout
 			});
-
-			conn.end();
 
 			return result.affectedRows > 0;
 		} catch (e) {
