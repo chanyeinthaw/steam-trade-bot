@@ -22,12 +22,13 @@ module.exports = async (req, res, modules) => {
 		.toString('base64')
 		.replace(/=/g, '');
 
-	let allowedItem = modules.query.allowedItem;
-	let pendingTrade = modules.query.pendingTrade;
-
 	let response = {status: 'failed', tradeofferid: null, message: ''};
 
 	try {
+		let conn = await modules.db.connection();
+		let allowedItem = modules.db.allowedItem(conn);
+		let pendingTrade = modules.db.pendingTrade(conn);
+
 		let items = JSON.parse(query.items);
 		let allowItems = await allowedItem.checkItems(items);
 
@@ -42,6 +43,8 @@ module.exports = async (req, res, modules) => {
 			pendingTrade.addTradeOffer(body.tradeofferid, idleBot.getBotName(), JSON.stringify(allowItems), 'in');
 
 		response.status = 'success'; response.tradeofferid = body.tradeofferid;
+
+		conn.end();
 	} catch(e) {
 		response.message = e.message;
 	}
