@@ -1,15 +1,15 @@
-const connector = require('../connector.js');
+const execute = require('../execute.js');
 
 const QUERYS = {
-	check: 'select assetid from allowed_items where assetid in (?)',
-	getprice: 'select assetid, price from allowed_items where assetid in (?)'
+	check: 'select classid from allowed_items where classid in (?)',
+	getprice: 'select classid, price from allowed_items where classid in (?)'
 };
 
-function getAssetIdArray(items) {
+function getClassIdArray(items) {
 	let assetIdArray = [];
 
 	for(let i = 0; i < items.length; i++) {
-		assetIdArray.push(items[i].assetid);
+		assetIdArray.push(items[i].classid);
 	}
 
 	return assetIdArray;
@@ -18,20 +18,16 @@ function getAssetIdArray(items) {
 module.exports = {
 	async checkItems(items) {
 		try {
-			let conn = await connector();
-
-			let allowedAssets =  await conn.query(QUERYS.check, [getAssetIdArray(items)]);
-
-			conn.end();
+			let allowedAssets =  await execute(QUERYS.check, [getClassIdArray(items)]);
 
 			let allowItems = [];
 
 			for(let i = 0; i < items.length; i++) {
-				let assetId = items[i].assetid;
+				let classId = items[i].classid;
 				let shouldAdd = false;
 
 				for(let j = 0; j < allowedAssets.length; j++) {
-					if (assetId == allowedAssets[j].assetid) {
+					if (classId == allowedAssets[j].classid) {
 						shouldAdd = true; break;
 					}
 				}
@@ -45,11 +41,7 @@ module.exports = {
 
 	async getTotalCoins(items) {
 		try {
-			let conn = await connector();
-
-			let assetsWithPrice = conn.query(QUERYS.getprice, [AllowedItem.getAssetIdArray(items)]);
-
-			conn.end();
+			let assetsWithPrice = await execute(QUERYS.getprice, [getClassIdArray(items)]);
 
 			let totalCoins = 0;
 
