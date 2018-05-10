@@ -1,4 +1,3 @@
-const execute = require('../execute.js');
 const jq = require('json-query');
 
 const QUERYS = {
@@ -16,46 +15,50 @@ function getClassIdArray(items) {
 	return assetIdArray;
 }
 
-module.exports = {
-	async checkItems(items) {
-		try {
-			let allowedAssets =  await execute(QUERYS.check, [getClassIdArray(items)]);
+module.exports = (conn) => {
+	return {
+		conn,
+		
+		async checkItems(items) {
+			try {
+				let allowedAssets =  await this.conn.query(QUERYS.check, [getClassIdArray(items)]);
 
-			let allowItems = [];
+				let allowItems = [];
 
-			for(let i = 0; i < items.length; i++) {
-				let classId = items[i].classid;
-				let shouldAdd = false;
+				for(let i = 0; i < items.length; i++) {
+					let classId = items[i].classid;
+					let shouldAdd = false;
 
-				for(let j = 0; j < allowedAssets.length; j++) {
-					if (classId == allowedAssets[j].classid) {
-						shouldAdd = true; break;
+					for(let j = 0; j < allowedAssets.length; j++) {
+						if (classId == allowedAssets[j].classid) {
+							shouldAdd = true; break;
+						}
 					}
+
+					if (shouldAdd) allowItems.push(items[i]);
+
+					return allowItems;
+				}
+			} catch (e) { console.log(e); return []; }
+		},
+
+		async getTotalCoins(items) {
+			try {
+				let assetsWithPrice = await this.conn.query(QUERYS.getprice, [getClassIdArray(items)]);
+
+				let totalCoins = 0;
+
+				for(let i = 0; i < assetsWithPrice.length; i++) {
+					let classid = assetsWithPrice[i].classid;
+					let sr = jq(`items[classid=${classid}].amount`, {data: {items: items}});
+
+					sr = sr.value;
+
+					totalCoins += assetsWithPrice[i].price * sr;
 				}
 
-				if (shouldAdd) allowItems.push(items[i]);
-
-				return allowItems;
-			}
-		} catch (e) { console.log(e); return []; }
-	},
-
-	async getTotalCoins(items) {
-		try {
-			let assetsWithPrice = await execute(QUERYS.getprice, [getClassIdArray(items)]);
-
-			let totalCoins = 0;
-
-			for(let i = 0; i < assetsWithPrice.length; i++) {
-				let classid = assetsWithPrice[i].classid;
-				let sr = jq(`items[classid=${classid}].amount`, {data: {items: items}});
-
-				sr = sr.value;
-
-				totalCoins += assetsWithPrice[i].price * sr;
-			}
-
-			return totalCoins;
-		} catch (e) { console.log(e); return 0}
+				return totalCoins;
+			} catch (e) { console.log(e); return 0}
+		}
 	}
 };
