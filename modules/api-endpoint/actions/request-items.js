@@ -22,13 +22,14 @@ module.exports = async (req, res, modules) => {
 		.toString('base64')
 		.replace(/=/g, '');
 
-	let pdao = new modules.query.PendingTrade(modules.mysql);
-	let adao = new modules.query.AllowedItem(modules.mysql);
+	let allowedItem = modules.query.allowedItem;
+	let pendingTrade = modules.query.pendingTrade;
+
 	let response = {status: 'failed', tradeofferid: null, message: ''};
 
 	try {
 		let items = JSON.parse(query.items);
-		let allowItems = await adao.checkItems(items);
+		let allowItems = await allowedItem.checkItems(items);
 
 		if (allowItems.length <= 0) {
 			idleBot.releaseBot();
@@ -38,7 +39,7 @@ module.exports = async (req, res, modules) => {
 		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, allowItems, [], message);
 
 		if (body.hasOwnProperty('tradeofferid'))
-			pdao.addTradeOffer(body.tradeofferid, idleBot.getBotName(), JSON.stringify(allowItems), 'in');
+			pendingTrade.addTradeOffer(body.tradeofferid, idleBot.getBotName(), JSON.stringify(allowItems), 'in');
 
 		response.status = 'success'; response.tradeofferid = body.tradeofferid;
 	} catch(e) {
