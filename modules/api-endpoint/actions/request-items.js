@@ -1,7 +1,7 @@
 const validate = require('../validate');
 const toSteamid = require('../../to-steamid');
 
-module.exports = async (req, res, modules) => {
+module.exports = async (req, res) => {
 	//region validation
 	let query = req.query;
 
@@ -14,9 +14,11 @@ module.exports = async (req, res, modules) => {
 	if (errors) return res.send(errors);
 	//endregion
 
-	if (modules.registry.getIdleBotCount() <= 0) return res.send({error: 'Bots are busy or offline.'});
+	const bots = global.app.bots;
 
-	let idleBot = modules.registry.getIdleBot();
+	if (bots.getIdleBotCount() <= 0) return res.send({error: 'Bots are busy or offline.'});
+
+	let idleBot = bots.getIdleBot();
 
 	let message = Buffer.from(idleBot.getBotName() + Date.now().toString())
 		.toString('base64')

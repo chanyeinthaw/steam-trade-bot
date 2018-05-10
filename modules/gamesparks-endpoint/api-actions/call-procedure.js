@@ -1,4 +1,4 @@
-module.exports = async (req, res, modules) => {
+module.exports = async (req, res) => {
 	let query = req.query;
 
 	let credentials = JSON.parse(query.credentials);
@@ -28,10 +28,11 @@ module.exports = async (req, res, modules) => {
 		return;
 	}
 	//endregion
+	const gs = global.app.gs;
 
 	try {
-		let user = await modules.gamesparks.authenticateUser(credentials.userName, credentials.password);
-		let body = await modules.gamesparks.executeCloudFunction(user.userId, query.request, data);
+		let user = await gs.authenticateUser(credentials.userName, credentials.password);
+		let body = await gs.executeCloudFunction(user.userId, query.request, data);
 
 		res.send(body);
 	} catch(e) {

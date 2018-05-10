@@ -1,4 +1,4 @@
-module.exports = async (req, res, modules) => {
+module.exports = async (req, res) => {
 	let query = req.query;
 
 	if (!(query.hasOwnProperty('username') && query.hasOwnProperty('password') && query.hasOwnProperty('displayname'))) {
@@ -7,10 +7,10 @@ module.exports = async (req, res, modules) => {
 		});
 	}
 
-	let body = null
+	let body = null;
 
 	try {
-		body = await modules.gamesparks.registerUser(query.displayname, query.username, query.password);
+		body = await global.app.gs.registerUser(query.displayname, query.username, query.password);
 	} catch (e) {
 		return res.send({
 			error: e.message

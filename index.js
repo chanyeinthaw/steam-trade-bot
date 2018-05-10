@@ -1,5 +1,4 @@
 const Fs = require('fs');
-const Mysql = require('promise-mysql');
 const TradeBot = require('./modules/trade-bot');
 const APIEndpoint = require('./modules/api-endpoint');
 const GamesparksEndpoint = require('./modules/gamesparks-endpoint');
@@ -13,19 +12,18 @@ process.on('unhandledRejection', error => {
 	console.log('unhandledRejection', error.message);
 });
 
-class SteamTradeBot {
+class Application {
 	constructor() {
-		this.gamesparks = new GamesparksEndpoint.Gamesparks(ENV.gamesparks);
-		this.botRegistry = new TradeBot.Registry();
-		this.apiEndpoint = new APIEndpoint(3000, {
-			registry: this.botRegistry,
-			gamesparks: this.gamesparks,
-			db: db,
-		});
+		this.gs = new GamesparksEndpoint.Gamesparks(ENV.gamesparks);
+		this.bots = new TradeBot.Registry();
+		this.apiep = new APIEndpoint(3000);
+		this.db = db;
 
-		this.registerBotList();
+		//this.registerBotList();
+	}
 
-		this.apiEndpoint.listen();
+	run() {
+		this.apiep.run();
 	}
 
 	registerBotList() {
@@ -42,4 +40,5 @@ class SteamTradeBot {
 	}
 }
 
-let instance = new SteamTradeBot();
+global.app = new Application();
+global.app.run();

@@ -53,6 +53,11 @@ class Gamesparks {
 		});
 	}
 
+	registerRoutes(app) {
+		app.get('/gamesparks/register', require('./api-actions/register.js'));
+		app.get('/gamesparks/call-procedure', require('./api-actions/call-procedure.js'));
+	}
+
 	onOperate() {
 		console.log(`Gamesparks client ready.`);
 		this.readyState = true;

@@ -1,7 +1,7 @@
 const validate = require('../validate');
 const toSteamid = require('../../to-steamid');
 
-module.exports = async (req, res, modules) => {
+module.exports = async (req, res) => {
 	let query = req.query;
 
 	let requires = [

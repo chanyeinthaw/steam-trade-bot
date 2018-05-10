@@ -1,6 +1,4 @@
-const Handler = require('./handler');
-
-module.exports = (app, handler) => {
+module.exports = (app) => {
 	//region ACCESS KEY FILTER
 	app.use((req, res, next) => {
 		const check = [
@@ -71,11 +69,10 @@ module.exports = (app, handler) => {
 	});
 	//endregion
 
-	app.get('/request-items', handler.requestItems.bind(handler));
-	app.get('/send-items', handler.sendItems.bind(handler));
-	app.get('/check-offer', handler.checkOffer.bind(handler));
-	app.get('/test-endpoint', handler.testEndpoint.bind(handler));
+	app.get('/request-items', require('./actions/request-items.js'));
+	app.get('/send-items', require('./actions/send-items.js'));
+	app.get('/check-offer', require('./actions/check-offer.js'));
+	app.get('/test-endpoint', require('./actions/test-endpoint.js'));
 
-	app.get('/gamesparks/register', handler.gamesparksRegister.bind(handler));
-	app.get('/gamesparks/call-procedure', handler.callProcedure.bind(handler));
+	global.app.gs.registerRoutes(app);
 };

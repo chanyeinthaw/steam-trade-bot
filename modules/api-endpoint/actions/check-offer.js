@@ -9,7 +9,7 @@ class Msg {
 	}
 }
 
-module.exports = async (req, res, modules) => {
+module.exports = async (req, res) => {
 	// region Validation
 	let query = req.query;
 
@@ -25,9 +25,11 @@ module.exports = async (req, res, modules) => {
 	// endregion
 
 	try {
-		let conn = await modules.db.connection();
-		let allowedItem = modules.db.allowedItem(conn);
-		let pendingTrade = modules.db.pendingTrade(conn);
+		const db = global.app.db, gs = global.app.gs, bots = global.app.bots;
+
+		let conn = await db.connection(),
+			allowedItem = db.allowedItem(conn),
+			pendingTrade = db.pendingTrade(conn);
 
 		let check = await pendingTrade.checkTradeOffer(query.offerid);
 
@@ -35,7 +37,7 @@ module.exports = async (req, res, modules) => {
 
 		let row = check[0];
 
-		let bot = modules.registry.getBotByName(row.botname);
+		let bot = bots.getBotByName(row.botname);
 
 		let offer = await bot.getTradeOffer(parseInt(query.offerid));
 
@@ -49,8 +51,10 @@ module.exports = async (req, res, modules) => {
 			//region update coins
 			if (!isIncomingOffer) totalCoins *= -1;
 
-			let user = await modules.gamesparks.authenticateUser(query.gsuser, query.gspassword);
-			let body = await modules.gamesparks.executeCloudFunction(user.userId, '.LogEventRequest', {eventKey: 'updateCoins',coins: totalCoins});
+			await gs.executeCloudFunction(
+				(await gs.authenticateUser(query.gsuser, query.gspassword)).userId,
+				'.LogEventRequest',
+				{eventKey: 'updateCoins',coins: totalCoins});
 			//endregion
 
 			pendingTrade.deleteTradeOffer(query.offerid); conn.end();
