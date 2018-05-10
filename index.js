@@ -3,9 +3,11 @@ const Mysql = require('promise-mysql');
 const TradeBot = require('./modules/trade-bot');
 const APIEndpoint = require('./modules/api-endpoint');
 const GamesparksEndpoint = require('./modules/gamesparks-endpoint');
-const query = require('./query');
+const query = require('./modules/database');
 
 const ENV = JSON.parse(Fs.readFileSync("env.json"));
+
+global.mysqlConfig = ENV.mysql;
 
 process.on('unhandledRejection', error => {
 	console.log('unhandledRejection', error.message);
@@ -13,20 +15,17 @@ process.on('unhandledRejection', error => {
 
 class SteamTradeBot {
 	constructor() {
-		Mysql.createConnection(ENV.mysql).then((conn) => {
-			this.gamesparks = new GamesparksEndpoint.Gamesparks(ENV.gamesparks);
-			this.botRegistry = new TradeBot.Registry();
-			this.apiEndpoint = new APIEndpoint(3000, {
-				registry: this.botRegistry,
-				gamesparks: this.gamesparks,
-				mysql: conn,
-				query: query,
-			});
-
-			this.registerBotList();
-
-			this.apiEndpoint.listen();
+		this.gamesparks = new GamesparksEndpoint.Gamesparks(ENV.gamesparks);
+		this.botRegistry = new TradeBot.Registry();
+		this.apiEndpoint = new APIEndpoint(3000, {
+			registry: this.botRegistry,
+			gamesparks: this.gamesparks,
+			query: query,
 		});
+
+		this.registerBotList();
+
+		this.apiEndpoint.listen();
 	}
 
 	registerBotList() {
