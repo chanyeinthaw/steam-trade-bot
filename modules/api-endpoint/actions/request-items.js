@@ -41,8 +41,16 @@ module.exports = async (req, res) => {
 
 		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, allowItems, [], message);
 
-		if (body.hasOwnProperty('tradeofferid'))
-			pendingTrade.addTradeOffer(body.tradeofferid, idleBot.getBotName(), JSON.stringify(allowItems), 'in');
+		if (body.hasOwnProperty('tradeofferid')) {
+			let tf = await pendingTrade.addTradeOffer(body.tradeofferid, idleBot.getBotName(), JSON.stringify(allowItems), 'in')
+
+			if (tf) {
+				let offerrows = await pendingTrade.checkTradeOffer(body.tradeofferid);
+				if (offerrows.length > 0) {
+					global.app.offerChecker.addOffer(offerrows[0], req.loggedUserId);
+				}
+			}
+		}
 
 		response.status = 'success'; response.tradeofferid = body.tradeofferid;
 

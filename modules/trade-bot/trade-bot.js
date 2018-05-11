@@ -31,7 +31,6 @@ class TradeBot {
 
 	initOperation() {
 		this.logOnOptions.twoFactorCode = SteamTotp.generateAuthCode(this.logOnOptions.sharedSecret);
-		this.logOnOptions.twoFactorCode = '88q4t';
 
 			this.client.login(this.logOnOptions, this.onClientLoggedOn.bind(this));
 	}

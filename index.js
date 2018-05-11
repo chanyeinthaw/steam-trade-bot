@@ -10,6 +10,7 @@ global.mysqlConfig = ENV.mysql;
 global.jwtSecret = ENV.jwtSecret;
 global.appKey = ENV.appKey;
 global.decryptionCache = {};
+global.offerCheckInterval = ENV.offerCheckInterval;
 
 process.on('unhandledRejection', error => {
 	console.log('unhandledRejection', error.message);
@@ -20,12 +21,14 @@ class Application {
 		this.gs = new GamesparksEndpoint.Gamesparks(ENV.gamesparks);
 		this.bots = new TradeBot.Registry();
 		this.apiep = new APIEndpoint(3000);
+		this.offerChecker = new TradeBot.OfferChecker();
 		this.db = db;
 
-		// this.registerBotList();
+		this.registerBotList();
 	}
 
 	run() {
+		this.offerChecker.start();
 		this.apiep.run();
 	}
 

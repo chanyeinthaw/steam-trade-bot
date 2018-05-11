@@ -1,5 +1,5 @@
 const QUERYS = {
-	check: 'SELECT botname, items, in_out FROM pending_trades WHERE offerid = ?',
+	check: 'SELECT offerid, botname, items, in_out FROM pending_trades WHERE offerid = ?',
 	delete: 'DELETE FROM pending_trades WHERE offerid = ?',
 	insert: 'INSERT into pending_trades SET ?'
 };
