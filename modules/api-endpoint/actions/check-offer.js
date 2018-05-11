@@ -28,6 +28,7 @@ module.exports = async (req, res) => {
 		let conn = await db.connection(),
 			allowedItem = db.allowedItem(conn),
 			pendingTrade = db.pendingTrade(conn),
+			inventoryItem = db.inventoryItem(conn),
 			user = db.user(conn);
 
 		let check = await pendingTrade.checkTradeOffer(query.offerid);
@@ -46,6 +47,7 @@ module.exports = async (req, res) => {
 			let totalCoins = await allowedItem.getTotalCoins(items);
 
 			// TODO add to own inventory
+			inventoryItem.addItems(items, row.botname, row.in_out);
 
 			//region update coins
 			if (!isIncomingOffer) totalCoins *= -1;

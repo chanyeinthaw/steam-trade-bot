@@ -27,9 +27,9 @@ module.exports = async (req, res) => {
 	let response = {status: 'failed', tradeofferid: null, message: ''};
 
 	try {
-		let conn = await modules.db.connection();
-		let allowedItem = modules.db.allowedItem(conn);
-		let pendingTrade = modules.db.pendingTrade(conn);
+		let conn = await global.app.db.connection();
+		let allowedItem = global.app.db.allowedItem(conn);
+		let pendingTrade = global.app.db.pendingTrade(conn);
 
 		let items = JSON.parse(query.items);
 		let allowItems = await allowedItem.checkItems(items);

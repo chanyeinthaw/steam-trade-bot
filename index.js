@@ -22,7 +22,7 @@ class Application {
 		this.apiep = new APIEndpoint(3000);
 		this.db = db;
 
-		//this.registerBotList();
+		this.registerBotList();
 	}
 
 	run() {
@@ -36,7 +36,7 @@ class Application {
 			let tradeBot = new TradeBot.Bot(botConfig.accountName,
 				botConfig.password, botConfig.sharedSecret,
 				botConfig.identitySecret, ENV.steamAPIKey,
-				this.botRegistry, this.offerPoll);
+				this.bots, this.offerPoll);
 
 			tradeBot.initOperation();
 		}
