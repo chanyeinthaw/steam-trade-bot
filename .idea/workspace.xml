@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="27bfb731-67d0-49fd-9557-f5f195dfe677" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
               <folding>
                 <element signature="n#!!block;n#registerJwtAuth#0;n#APIEndpoint#0" />
                 <element signature="n#!!block;n#run#0;n#APIEndpoint#0" />
@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/modules/database/query/user.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+              <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -49,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
               <folding>
                 <element signature="e#190#224#0" />
               </folding>
@@ -69,11 +69,20 @@
       <file leaf-file-name="check-offer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="50" column="51" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+            <state relative-caret-position="17">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#255#275#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inventory-item.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/database/query/inventory-item.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -131,7 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/modules/logger/index.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/register-user.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/login.js" />
@@ -182,6 +190,7 @@
         <option value="$PROJECT_DIR$/modules/database/query/user.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -320,14 +329,7 @@
       <workItem from="1525921933030" duration="2012000" />
       <workItem from="1525924094108" duration="17595000" />
       <workItem from="1525964382472" duration="3004000" />
-      <workItem from="1526007127836" duration="5308000" />
-    </task>
-    <task id="LOCAL-00083" summary="Added dao of allowed_items and pending_trades tables">
-      <created>1525771310017</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1525771310017</updated>
+      <workItem from="1526007127836" duration="7036000" />
     </task>
     <task id="LOCAL-00084" summary="Added promise-mysql package">
       <created>1525771329779</created>
@@ -665,11 +667,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526012284048</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="check-offer can now acquire gamesparks credentials from database">
+      <created>1526012486991</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1526012486991</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128869000" />
+    <option name="totallyTimeSpent" value="130597000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -682,7 +691,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32943144" />
@@ -691,7 +699,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49702382" weight="0.68781304" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4940476" weight="0.27378964" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49627978" weight="0.36560935" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49627978" visible="true" weight="1.0" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -769,7 +777,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added inventory-item.js&#10;update check-offer response messages" />
     <MESSAGE value="added /check-offer route to access_key filter mw" />
     <MESSAGE value="added new query module which include&#10;db connection and queries" />
     <MESSAGE value="added new database module which include connector and queries" />
@@ -794,7 +801,8 @@
     <MESSAGE value="added user query with method to get gamesparks password decrypted" />
     <MESSAGE value="added jwtAuth middleware to endpoint&#10;removed unused middlewares from routes" />
     <MESSAGE value="call-procedure can now acquire gamesparks credentials from database" />
-    <option name="LAST_COMMIT_MESSAGE" value="call-procedure can now acquire gamesparks credentials from database" />
+    <MESSAGE value="check-offer can now acquire gamesparks credentials from database" />
+    <option name="LAST_COMMIT_MESSAGE" value="check-offer can now acquire gamesparks credentials from database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -806,13 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="913" column="12" selection-start-line="913" selection-start-column="5" selection-end-line="913" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -941,13 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/database/query/inventory-item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/send-items.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1049,7 +1043,7 @@
     <entry file="file://$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
           <folding>
             <element signature="n#!!block;n#registerJwtAuth#0;n#APIEndpoint#0" />
             <element signature="n#!!block;n#run#0;n#APIEndpoint#0" />
@@ -1080,24 +1074,41 @@
     <entry file="file://$PROJECT_DIR$/modules/database/query/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
           <folding>
             <element signature="e#190#224#0" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/database/query/inventory-item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="65" lean-forward="true" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
+          <folding>
+            <element signature="n#!!block;n#dependencies#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="50" column="51" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+        <state relative-caret-position="17">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="e#255#275#0" />
           </folding>

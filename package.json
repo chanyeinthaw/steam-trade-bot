@@ -14,6 +14,10 @@
   ],
   "author": "Chan Nyein Thaw (chanyeinthaw@outlook.com)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:chanyeinthaw/steam-trade-bot.git"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
@@ -29,7 +33,7 @@
     "promise-mysql": "^3.2.1",
     "steam-totp": "^2.1.0",
     "steam-tradeoffers": "^3.1.0",
-    "steam-user": "^3.27.0",
+    "steam-user": "^3.27.1",
     "steam-web-api-key": "0.0.3",
     "steamcommunity": "^3.36.1"
   }
