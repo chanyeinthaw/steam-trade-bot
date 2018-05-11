@@ -15,10 +15,11 @@ module.exports = (conn) => {
 			return await this.conn.query(QUERYS.delete, [offerId]);
 		},
 
-		async addTradeOffer(offerId, botName, items, inout) {
+		async addTradeOffer(offerId, botName, message, items, inout) {
 			try {
 				let result = await this.conn.query(QUERYS.insert, {
 					offerid: offerId,
+					message: message,
 					botname: botName,
 					items: items,
 					in_out: inout
