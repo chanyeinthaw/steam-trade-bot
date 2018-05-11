@@ -3,18 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="27bfb731-67d0-49fd-9557-f5f195dfe677" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/actions/send-items.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/actions/send-items.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/handler/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/gamesparks-endpoint/gamesparks.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gamesparks-endpoint/gamesparks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,63 +22,58 @@
     </option>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="trade-bot.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/trade-bot/trade-bot.js">
+    <leaf>
+      <file leaf-file-name="api-endpoint.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="32" column="101" selection-start-line="32" selection-start-column="101" selection-end-line="32" selection-end-column="101" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/api-endpoint/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="76" column="30" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gamesparks.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/gamesparks.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="57" column="83" selection-start-line="57" selection-start-column="83" selection-end-line="57" selection-end-column="83" />
+            <state relative-caret-position="255">
+              <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
               <folding>
-                <element signature="n#!!block;n#authenticateUser#0;n#Gamesparks#0" />
-                <element signature="n#!!block;n#executeCloudFunction#0;n#Gamesparks#0" />
-                <element signature="n#!!block;n#onOperate#0;n#Gamesparks#0" />
-                <element signature="n#!!block;n#onMessage#0;n#Gamesparks#0" />
+                <element signature="n#!!block;n#registerJwtAuth#0;n#APIEndpoint#0" />
+                <element signature="n#!!block;n#run#0;n#APIEndpoint#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="call-procedure.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js">
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/database/query/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="33" column="89" selection-start-line="33" selection-start-column="89" selection-end-line="33" selection-end-column="89" />
+            <state relative-caret-position="170">
+              <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/register.js">
+      <file leaf-file-name="request-items.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="17" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+            <state relative-caret-position="85">
+              <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+              <folding>
+                <element signature="e#190#224#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="decrypt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/decrypt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="check-offer.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="50" column="51" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+              <folding>
+                <element signature="e#255#275#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,8 +89,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>AuthenticationRequest</find>
-      <find>G</find>
       <find>invalid input</find>
       <find>Registry</find>
       <find>remember</find>
@@ -135,9 +117,12 @@
       <find>registr</find>
       <find>invalid inp</find>
       <find>invalid</find>
+      <find>var</find>
+      <find>let unse</find>
     </findStrings>
     <replaceStrings>
       <replace>this.conn.query</replace>
+      <replace>let</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -146,8 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bots.json" />
-        <option value="$PROJECT_DIR$/modules/api-endpoint/actions/request-items/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/modules/logger/index.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/register-user.js" />
@@ -158,13 +141,11 @@
         <option value="$PROJECT_DIR$/modules/api-endpoint/index.js" />
         <option value="$PROJECT_DIR$/modules/poller/index.js" />
         <option value="$PROJECT_DIR$/modules/poller/poller.js" />
-        <option value="$PROJECT_DIR$/env.example.json" />
         <option value="$PROJECT_DIR$/modules/offer-poll/poller.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/trade-bot.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.js" />
         <option value="$PROJECT_DIR$/modules/trade-bot/registry.js" />
         <option value="$PROJECT_DIR$/data/pending-trades-dao/index.js" />
-        <option value="$PROJECT_DIR$/env.json" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/handler/index.js" />
         <option value="$PROJECT_DIR$/data/pending-trades-dao/pending-trade-dao.js" />
         <option value="$PROJECT_DIR$/data/pending-trade-dao.js" />
@@ -185,18 +166,22 @@
         <option value="$PROJECT_DIR$/modules/database/execute.js" />
         <option value="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" />
         <option value="$PROJECT_DIR$/modules/database/query/inventory-item.js" />
-        <option value="$PROJECT_DIR$/modules/database/index.js" />
         <option value="$PROJECT_DIR$/modules/database/query/allowed-item.js" />
         <option value="$PROJECT_DIR$/modules/database/query/pending-trade.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/actions/send-items.js" />
-        <option value="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js" />
-        <option value="$PROJECT_DIR$/modules/api-endpoint/routes.js" />
-        <option value="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" />
-        <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/gamesparks.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/register.js" />
+        <option value="$PROJECT_DIR$/modules/api-endpoint/routes.js" />
+        <option value="$PROJECT_DIR$/env.json" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" />
+        <option value="$PROJECT_DIR$/modules/database/index.js" />
+        <option value="$PROJECT_DIR$/env.example.json" />
+        <option value="$PROJECT_DIR$/modules/decrypt.js" />
+        <option value="$PROJECT_DIR$/modules/database/query/user.js" />
+        <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js" />
+        <option value="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" />
       </list>
     </option>
   </component>
@@ -248,27 +233,14 @@
               <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="api-endpoint" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="api-endpoint" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="gamesparks-endpoint" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="gamesparks-endpoint" type="462c0819:PsiDirectoryNode" />
-              <item name="api-actions" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="query" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
@@ -347,63 +319,8 @@
       <workItem from="1525835092242" duration="12759000" />
       <workItem from="1525921933030" duration="2012000" />
       <workItem from="1525924094108" duration="17595000" />
-      <workItem from="1525964382472" duration="1568000" />
-    </task>
-    <task id="LOCAL-00075" summary="env update">
-      <created>1525759964843</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1525759964844</updated>
-    </task>
-    <task id="LOCAL-00076" summary="env update">
-      <created>1525759997154</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1525759997154</updated>
-    </task>
-    <task id="LOCAL-00077" summary="library update switched from SteamUser to SteamCommunity">
-      <created>1525760019454</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1525760019454</updated>
-    </task>
-    <task id="LOCAL-00078" summary="module update">
-      <created>1525760044987</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1525760044987</updated>
-    </task>
-    <task id="LOCAL-00079" summary="Bot registry can now get bot by name">
-      <created>1525760222549</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1525760222549</updated>
-    </task>
-    <task id="LOCAL-00080" summary="trade-bot class remove unnecessary code">
-      <created>1525760259809</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1525760259809</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Removed console log of websession variable">
-      <created>1525771272799</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1525771272799</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Added check-offer route">
-      <created>1525771294094</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1525771294094</updated>
+      <workItem from="1525964382472" duration="3004000" />
+      <workItem from="1526007127836" duration="5308000" />
     </task>
     <task id="LOCAL-00083" summary="Added dao of allowed_items and pending_trades tables">
       <created>1525771310017</created>
@@ -692,11 +609,67 @@
       <option name="project" value="LOCAL" />
       <updated>1525948486404</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="make application global every module can access from anywhere">
+      <created>1525966064386</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1525966064387</updated>
+    </task>
+    <task id="LOCAL-00125" summary="updated env format">
+      <created>1526012114699</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1526012114700</updated>
+    </task>
+    <task id="LOCAL-00126" summary="added crypto packages">
+      <created>1526012130226</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1526012130226</updated>
+    </task>
+    <task id="LOCAL-00127" summary="added decryption key, jwt key and decryption cache to global">
+      <created>1526012163610</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1526012163610</updated>
+    </task>
+    <task id="LOCAL-00128" summary="added decrypt module">
+      <created>1526012174732</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1526012174732</updated>
+    </task>
+    <task id="LOCAL-00129" summary="added user query with method to get gamesparks password decrypted">
+      <created>1526012195522</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1526012195522</updated>
+    </task>
+    <task id="LOCAL-00130" summary="added jwtAuth middleware to endpoint&#10;removed unused middlewares from routes">
+      <created>1526012241829</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1526012241829</updated>
+    </task>
+    <task id="LOCAL-00131" summary="call-procedure can now acquire gamesparks credentials from database">
+      <created>1526012284048</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1526012284048</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122125000" />
+    <option name="totallyTimeSpent" value="128869000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -711,12 +684,12 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32943144" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50595236" side_tool="true" weight="0.442404" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49702382" weight="0.68781304" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4940476" visible="true" weight="0.442404" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4940476" weight="0.27378964" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49627978" weight="0.36560935" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -732,23 +705,23 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32888147" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49702382" weight="0.68781304" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32943144" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4940476" weight="0.442404" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32888147" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49627978" weight="0.36560935" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50595236" side_tool="true" weight="0.442404" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49702382" weight="0.68781304" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32888147" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
@@ -796,14 +769,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update names" />
-    <MESSAGE value="update name" />
-    <MESSAGE value="update data to query" />
-    <MESSAGE value="update query class names" />
-    <MESSAGE value="deleted refactored file" />
-    <MESSAGE value="update getTradeOffer method resolve data" />
-    <MESSAGE value="changed getPrice method to getTotalCoins method" />
-    <MESSAGE value="update dependencices" />
     <MESSAGE value="added inventory-item.js&#10;update check-offer response messages" />
     <MESSAGE value="added /check-offer route to access_key filter mw" />
     <MESSAGE value="added new query module which include&#10;db connection and queries" />
@@ -821,7 +786,15 @@
     <MESSAGE value="changed name query to db" />
     <MESSAGE value="updated methods, added connection method" />
     <MESSAGE value="updated module usages" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated module usages" />
+    <MESSAGE value="make application global every module can access from anywhere" />
+    <MESSAGE value="updated env format" />
+    <MESSAGE value="added crypto packages" />
+    <MESSAGE value="added decryption key, jwt key and decryption cache to global" />
+    <MESSAGE value="added decrypt module" />
+    <MESSAGE value="added user query with method to get gamesparks password decrypted" />
+    <MESSAGE value="added jwtAuth middleware to endpoint&#10;removed unused middlewares from routes" />
+    <MESSAGE value="call-procedure can now acquire gamesparks credentials from database" />
+    <option name="LAST_COMMIT_MESSAGE" value="call-procedure can now acquire gamesparks credentials from database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -829,27 +802,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/validate/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" selection-start-column="33" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/response.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1768">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -957,13 +909,6 @@
     <entry file="file://$PROJECT_DIR$/models/index.js" />
     <entry file="file://$PROJECT_DIR$/models/allowed-item.js" />
     <entry file="file://$PROJECT_DIR$/query/allowed-items.js" />
-    <entry file="file://$PROJECT_DIR$/env.example.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -982,13 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/env.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/database/connector.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1000,20 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/database/query/pending-trade.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="21" lean-forward="true" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/database/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1031,27 +955,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/handler/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/handler/index.js" />
     <entry file="file://$PROJECT_DIR$/modules/trade-bot/trade-bot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -1063,27 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="38" lean-forward="true" selection-start-column="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="76" column="30" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1100,17 +983,124 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/php-serialize/lib/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="33" column="89" selection-start-line="33" selection-start-column="89" selection-end-line="33" selection-end-column="89" />
+        <state relative-caret-position="128">
+          <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/database/query/pending-trade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="12" lean-forward="true" selection-end-line="33" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env.example.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="61" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="3" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+          <folding>
+            <element signature="e#405#459#0" />
+            <element signature="n#!!block;n#registerBotList#0;n#Application#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="17" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        <state relative-caret-position="51">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding>
+            <element signature="e#181#238#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/database/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!block;n#registerJwtAuth#0;n#APIEndpoint#0" />
+            <element signature="n#!!block;n#run#0;n#APIEndpoint#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/decrypt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <folding>
+            <element signature="e#175#234#0" />
+            <element signature="e#272#328#0" />
+            <element signature="e#354#391#0" />
+            <element signature="e#401#460#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/database/query/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <folding>
+            <element signature="e#190#224#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="50" column="51" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+          <folding>
+            <element signature="e#255#275#0" />
+          </folding>
         </state>
       </provider>
     </entry>

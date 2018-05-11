@@ -13,9 +13,7 @@ module.exports = async (req, res) => {
 	// region Validation
 	let query = req.query;
 
-	let requires = [
-		'offerid', 'gsuser', 'gspassword'
-	];
+	let requires = ['offerid'];
 
 	let errors = validate(requires, query);
 
@@ -29,7 +27,8 @@ module.exports = async (req, res) => {
 
 		let conn = await db.connection(),
 			allowedItem = db.allowedItem(conn),
-			pendingTrade = db.pendingTrade(conn);
+			pendingTrade = db.pendingTrade(conn),
+			user = db.user(conn);
 
 		let check = await pendingTrade.checkTradeOffer(query.offerid);
 
@@ -52,7 +51,7 @@ module.exports = async (req, res) => {
 			if (!isIncomingOffer) totalCoins *= -1;
 
 			await gs.executeCloudFunction(
-				(await gs.authenticateUser(query.gsuser, query.gspassword)).userId,
+				(await gs.authenticateUser(`user${req.loggedUserId}`, await user.getGamesparksPassword(req.loggedUserId))).userId,
 				'.LogEventRequest',
 				{eventKey: 'updateCoins',coins: totalCoins});
 			//endregion
