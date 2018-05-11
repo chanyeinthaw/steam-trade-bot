@@ -1,8 +1,6 @@
 module.exports = async (req, res) => {
 	let query = req.query;
 
-	let credentials = JSON.parse(query.credentials);
-
 	//region VALIDATION
 	if (!query.hasOwnProperty('request')) {
 		return res.send({
@@ -22,17 +20,31 @@ module.exports = async (req, res) => {
 		data = JSON.parse(query.data);
 	} catch(e) {
 		res.send({
-			error: 'invalid data'
+			error: 'invalid json data'
 		});
 
 		return;
 	}
 	//endregion
 	const gs = global.app.gs;
+	const db = global.app.db;
 
 	try {
-		let user = await gs.authenticateUser(credentials.userName, credentials.password);
-		let body = await gs.executeCloudFunction(user.userId, query.request, data);
+		const conn = await db.connection();
+		const userq = db.user(conn);
+
+		const credentials = {
+			userName: `user${req.loggedUserId}`,
+			password: await userq.getGamesparksPassword(req.loggedUserId)
+		};
+
+		conn.end();
+
+		let body = await gs.executeCloudFunction(
+			(await gs.authenticateUser(credentials.userName, credentials.password)).userId,
+			query.request,
+			data
+		);
 
 		res.send(body);
 	} catch(e) {
