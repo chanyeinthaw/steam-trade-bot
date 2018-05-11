@@ -6,6 +6,7 @@ const db = require('./modules/database');
 
 const ENV = JSON.parse(Fs.readFileSync("env.json"));
 
+global.gameConfig = require('./game-config.js');
 global.mysqlConfig = ENV.mysql;
 global.jwtSecret = ENV.jwtSecret;
 global.appKey = ENV.appKey;

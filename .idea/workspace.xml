@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="27bfb731-67d0-49fd-9557-f5f195dfe677" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/game-config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/database/query/pending-trade.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/database/query/pending-trade.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,13 +27,31 @@
       <file leaf-file-name="pending-trade.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/database/query/pending-trade.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+            <state relative-caret-position="68">
+              <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="request-items.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registry.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/trade-bot/registry.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="request-items.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
@@ -98,11 +116,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/modules/poller/poller.js" />
         <option value="$PROJECT_DIR$/modules/offer-poll/poller.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/trade-bot.js" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.js" />
-        <option value="$PROJECT_DIR$/modules/trade-bot/registry.js" />
         <option value="$PROJECT_DIR$/data/pending-trades-dao/index.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/handler/index.js" />
         <option value="$PROJECT_DIR$/data/pending-trades-dao/pending-trade-dao.js" />
@@ -144,11 +160,13 @@
         <option value="$PROJECT_DIR$/modules/trade-bot/index.js" />
         <option value="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" />
         <option value="$PROJECT_DIR$/modules/trade-bot/offer-checker.js" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/env.example.json" />
         <option value="$PROJECT_DIR$/env.json" />
         <option value="$PROJECT_DIR$/modules/database/query/pending-trade.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js" />
+        <option value="$PROJECT_DIR$/game-config.js" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/modules/trade-bot/registry.js" />
       </list>
     </option>
   </component>
@@ -190,30 +208,6 @@
             <path>
               <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="query" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="steam-trade-bot" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="trade-bot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="steam-trade-bot" type="b2602c69:ProjectViewProjectNode" />
@@ -294,14 +288,7 @@
       <workItem from="1525921933030" duration="2012000" />
       <workItem from="1525924094108" duration="17595000" />
       <workItem from="1525964382472" duration="3004000" />
-      <workItem from="1526007127836" duration="17687000" />
-    </task>
-    <task id="LOCAL-00088" summary="Prevent data fault">
-      <created>1525771670470</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1525771670470</updated>
+      <workItem from="1526007127836" duration="20021000" />
     </task>
     <task id="LOCAL-00089" summary="Refactored, added getPrice of items method">
       <created>1525772045972</created>
@@ -639,11 +626,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526027743701</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="added message to pending_trades">
+      <created>1526028391461</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1526028391461</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141248000" />
+    <option name="totallyTimeSpent" value="143582000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -722,7 +716,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated reference to query&#10;make mysql config global" />
     <MESSAGE value="old query deleted" />
     <MESSAGE value="removed pending trade offer expire check" />
     <MESSAGE value="used item classid instead of assetid" />
@@ -747,7 +740,8 @@
     <MESSAGE value="check-offer working" />
     <MESSAGE value="added gamesparks apis&#10;GET change-displayname&#10;GET get-account-details&#10;GET update-user-points" />
     <MESSAGE value="added offer checker interval" />
-    <option name="LAST_COMMIT_MESSAGE" value="added offer checker interval" />
+    <MESSAGE value="added message to pending_trades" />
+    <option name="LAST_COMMIT_MESSAGE" value="added message to pending_trades" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,13 +749,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/steam-user/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/offer-poll/poller.js" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -983,13 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/trade-bot/registry.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -1017,13 +997,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="50" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/env.example.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1045,10 +1018,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/database/query/pending-trade.js">
+    <entry file="file://$PROJECT_DIR$/game-config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+        <state relative-caret-position="85">
+          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1059,6 +1032,27 @@
           <folding>
             <element signature="e#190#224#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/database/query/pending-trade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/trade-bot/registry.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
         </state>
       </provider>
     </entry>
