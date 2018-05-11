@@ -22,7 +22,7 @@ class Application {
 		this.apiep = new APIEndpoint(3000);
 		this.db = db;
 
-		this.registerBotList();
+		// this.registerBotList();
 	}
 
 	run() {

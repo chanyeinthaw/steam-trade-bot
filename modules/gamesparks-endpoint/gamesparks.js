@@ -55,7 +55,9 @@ class Gamesparks {
 
 	registerRoutes(app) {
 		app.get('/gamesparks/register', require('./api-actions/register.js'));
-		app.get('/gamesparks/call-procedure', require('./api-actions/call-procedure.js'));
+		app.get('/gamesparks/change-displayname', require('./api-actions/change-displayname.js'));
+		app.get('/gamesparks/update-user-points', require('./api-actions/update-user-points.js'));
+		app.get('/gamesparks/get-account-details', require('./api-actions/get-account-details.js'));
 	}
 
 	onOperate() {
