@@ -7,6 +7,9 @@ const db = require('./modules/database');
 const ENV = JSON.parse(Fs.readFileSync("env.json"));
 
 global.mysqlConfig = ENV.mysql;
+global.jwtSecret = ENV.jwtSecret;
+global.appKey = ENV.appKey;
+global.decryptionCache = {};
 
 process.on('unhandledRejection', error => {
 	console.log('unhandledRejection', error.message);
