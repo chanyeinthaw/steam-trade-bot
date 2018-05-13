@@ -87,6 +87,15 @@ class TradeBot {
 		this.releaseBot();
 	}
 
+	async getInventoryItemCount(appid, contextid) {
+		return new Promise((resolve, reject) => {
+			this.offers.loadMyInventory({appId: appid, contextId: contextid}, (err, data, raw) => {
+				if (err) return reject(err);
+				else resolve(data.length);
+			})
+		})
+	}
+
 	async getTradeOffer(offerId) {
 		return new Promise((resolve, reject) => {
 			this.offers.getOffer({
