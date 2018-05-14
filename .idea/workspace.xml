@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27bfb731-67d0-49fd-9557-f5f195dfe677" name="Default" comment="added get inventory item count method to TradeBot">
+    <list default="true" id="27bfb731-67d0-49fd-9557-f5f195dfe677" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/database/query/inventory-item.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/database/query/inventory-item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/trade-bot/offer-checker.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/trade-bot/offer-checker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,51 +26,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="update-user-points.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="call-cloud-code.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/call-cloud-code.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/trade-bot/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="39" lean-forward="true" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="offer-checker.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/trade-bot/offer-checker.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="92" column="12" selection-start-line="92" selection-start-column="12" selection-end-line="94" selection-end-column="81" />
-              <folding>
-                <element signature="e#2961#2982#0" />
-                <element signature="n#!!block;n#addOffer#0;n#OfferChecker#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="check-offer.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="51" column="81" selection-start-line="51" selection-start-column="81" selection-end-line="51" selection-end-column="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inventory-item.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/database/query/inventory-item.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            <state relative-caret-position="208">
+              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -78,8 +56,8 @@
       <file leaf-file-name="trade-bot.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/trade-bot/trade-bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="191">
+              <caret line="32" column="101" selection-start-line="32" selection-start-column="101" selection-end-line="32" selection-end-column="101" />
               <folding>
                 <element signature="n#!!block;n#onClientLoggedOn#0;n#TradeBot#0" />
                 <element signature="n#!!block;n#getTradeOffer#0;n#TradeBot#0" />
@@ -174,26 +152,26 @@
         <option value="$PROJECT_DIR$/modules/database/query/user.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/call-procedure.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/change-user-displayname.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-coins.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/gamesparks.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/call-cloud-code.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/change-displayname.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/get-account-details.js" />
-        <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js" />
         <option value="$PROJECT_DIR$/modules/trade-bot/index.js" />
         <option value="$PROJECT_DIR$/env.example.json" />
         <option value="$PROJECT_DIR$/env.json" />
         <option value="$PROJECT_DIR$/modules/database/query/pending-trade.js" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/game-config.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/actions/request-items.js" />
         <option value="$PROJECT_DIR$/modules/trade-bot/registry.js" />
         <option value="$PROJECT_DIR$/modules/database/query/inventory-item.js" />
-        <option value="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" />
         <option value="$PROJECT_DIR$/modules/trade-bot/offer-checker.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" />
+        <option value="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" />
+        <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js" />
       </list>
     </option>
   </component>
@@ -317,14 +295,7 @@
       <workItem from="1525964382472" duration="3004000" />
       <workItem from="1526007127836" duration="20152000" />
       <workItem from="1526096127926" duration="6960000" />
-      <workItem from="1526246041578" duration="3749000" />
-    </task>
-    <task id="LOCAL-00093" summary="Error fixes request-items action">
-      <created>1525772932516</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1525772932516</updated>
+      <workItem from="1526246041578" duration="4660000" />
     </task>
     <task id="LOCAL-00094" summary="check-offer current version tested and fixed">
       <created>1525774500374</created>
@@ -662,11 +633,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526272324417</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="offer-checker and check-offer can now get assetid of received items">
+      <created>1526274419087</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1526274419088</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154422000" />
+    <option name="totallyTimeSpent" value="155333000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -686,7 +664,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50595236" side_tool="true" weight="0.442404" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49702382" weight="0.68781304" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4940476" weight="0.8914858" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4940476" weight="0.48414025" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49627978" weight="1.0" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -745,7 +723,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated total coin calculation method behavior" />
     <MESSAGE value="added offer object to message response object" />
     <MESSAGE value="added allowedItem query" />
     <MESSAGE value="added json-query package" />
@@ -770,7 +747,8 @@
     <MESSAGE value="added get inventory item count method to TradeBot" />
     <MESSAGE value="added inventory length check and reduced the items" />
     <MESSAGE value="updated method calls" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated method calls" />
+    <MESSAGE value="offer-checker and check-offer can now get assetid of received items" />
+    <option name="LAST_COMMIT_MESSAGE" value="offer-checker and check-offer can now get assetid of received items" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -920,34 +898,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/call-cloud-code.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/get-account-details.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="79" selection-start-line="3" selection-start-column="79" selection-end-line="3" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="26" column="52" lean-forward="true" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-          <folding>
-            <element signature="n#!!block;n#run#0;n#APIEndpoint#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1023,13 +977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/trade-bot/registry.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1037,30 +984,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="66" column="69" lean-forward="true" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/trade-bot/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="39" lean-forward="true" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/trade-bot/trade-bot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-          <folding>
-            <element signature="n#!!block;n#onClientLoggedOn#0;n#TradeBot#0" />
-            <element signature="n#!!block;n#getTradeOffer#0;n#TradeBot#0" />
-            <element signature="n#!!block;n#cancelTradeOffer#0;n#TradeBot#0" />
-            <element signature="n#!!block;n#sendTradeOffer#0;n#TradeBot#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/database/query/inventory-item.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1075,10 +1009,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js">
+    <entry file="file://$PROJECT_DIR$/modules/database/query/inventory-item.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="51" column="81" selection-start-line="51" selection-start-column="81" selection-end-line="51" selection-end-column="81" />
+        <state relative-caret-position="182">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/trade-bot/trade-bot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="32" column="101" selection-start-line="32" selection-start-column="101" selection-end-line="32" selection-end-column="101" />
+          <folding>
+            <element signature="n#!!block;n#onClientLoggedOn#0;n#TradeBot#0" />
+            <element signature="n#!!block;n#getTradeOffer#0;n#TradeBot#0" />
+            <element signature="n#!!block;n#cancelTradeOffer#0;n#TradeBot#0" />
+            <element signature="n#!!block;n#sendTradeOffer#0;n#TradeBot#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding>
+            <element signature="n#!!block;n#run#0;n#APIEndpoint#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/call-cloud-code.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
         </state>
       </provider>
     </entry>
