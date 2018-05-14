@@ -36,17 +36,18 @@ module.exports = (conn) => {
 		async addItems(items, botname, inout) {
 			for(let i = 0; i < items.length; i++ ) {
 				let current = items[0];
-				let item = await this.addItem(current.classid, current.image_url, current.image_url_large);
+				let  item= await this.addItem(current.classid, current.icon_url, current.icon_url_large);
 
 				if (item.hasOwnProperty('id')) {
-					await this.addTranaction(botname, item.id, current.amount, inout);
+					await this.addTranaction(botname, item.id, current.id ,current.amount, inout);
 				}
 			}
 		},
-		async addTranaction(botname, inventory_item_id, count, inout) {
+		async addTranaction(botname, inventory_item_id, assetid,count, inout) {
 			try {
 				let res = await this.conn.query(QUERYS.insert_transaction, {
 					botname: botname,
+					assetid: assetid,
 					inventory_item_id: inventory_item_id,
 					count: count,
 					in_out: inout

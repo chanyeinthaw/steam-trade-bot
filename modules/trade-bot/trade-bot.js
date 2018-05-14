@@ -31,8 +31,8 @@ class TradeBot {
 
 	initOperation() {
 		this.logOnOptions.twoFactorCode = SteamTotp.generateAuthCode(this.logOnOptions.sharedSecret);
-
-			this.client.login(this.logOnOptions, this.onClientLoggedOn.bind(this));
+		this.logOnOptions.twoFactorCode = '5qgpv';
+		this.client.login(this.logOnOptions, this.onClientLoggedOn.bind(this));
 	}
 
 	isBotIdle() {
@@ -94,6 +94,15 @@ class TradeBot {
 				else resolve(data.length);
 			})
 		})
+	}
+
+	async getItemsOfCompletedOffer(offer) {
+		return new Promise((resolve, reject) => {
+			this.offers.getItems({tradeId: offer.tradeid}, (err, items) => {
+				if (err) reject(err);
+				else resolve(items);
+			});
+		});
 	}
 
 	async getTradeOffer(offerId) {

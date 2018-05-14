@@ -90,7 +90,9 @@ class OfferChecker {
 			let isIncomingOffer = row.in_out === 'in';
 			let totalCoins = await allowedItem.getTotalCoins(items);
 
-			inventoryItem.addItems(items, row.botname, row.in_out);
+			let receivedItems = await bot.getItemsOfCompletedOffer(offer);
+
+			await inventoryItem.addItems(receivedItems, row.botname, row.in_out);
 
 			//region update coins
 			if (!isIncomingOffer) totalCoins *= -1;

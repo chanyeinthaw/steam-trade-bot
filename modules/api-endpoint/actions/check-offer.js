@@ -47,7 +47,9 @@ module.exports = async (req, res) => {
 			let totalCoins = await allowedItem.getTotalCoins(items);
 
 			// TODO add to own inventory
-			inventoryItem.addItems(items, row.botname, row.in_out);
+			let receivedItems = await bot.getItemsOfCompletedOffer(offer);
+
+			await inventoryItem.addItems(receivedItems, row.botname, row.in_out);
 
 			//region update coins
 			if (!isIncomingOffer) totalCoins *= -1;
