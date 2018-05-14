@@ -38,13 +38,26 @@ class Registry {
 		return count;
 	}
 
-	getIdleBot() {
+	async getBot(game, items) {
 		for(let i in this.bots) {
 			let bot = this.bots[i];
 
 			if (bot.isBotIdle()) {
+				let free = null;
+				try {
+					free = game.maxInventoryLimit - await bot.getInventoryItemCount(game.appId, game.contextId);
+				} catch (e) { continue; }
+
+				let reducedItems = null;
+				if (items.length > free) {
+					reducedItems = items.splice(0, items.length - free);
+				} else {
+					reducedItems = items;
+				}
+				if (reducedItems.length <= 0) continue;
+
 				bot.makeBotBusy();
-				return bot;
+				return { bot: bot, items: reducedItems };
 			}
 		}
 	}
