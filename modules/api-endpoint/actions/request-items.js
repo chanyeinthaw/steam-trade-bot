@@ -18,20 +18,25 @@ module.exports = async (req, res) => {
 
 	if (bots.getIdleBotCount() <= 0) return res.send({error: 'Bots are busy or offline.'});
 
-	let idleBot = bots.getIdleBot();
-
-	let message = Buffer.from(idleBot.getBotName() + Date.now().toString())
-		.toString('base64')
-		.replace(/=/g, '');
-
 	let response = {status: 'failed', tradeofferid: null, message: ''};
-
+	let idleBot = null;
 	try {
 		let conn = await global.app.db.connection();
 		let allowedItem = global.app.db.allowedItem(conn);
 		let pendingTrade = global.app.db.pendingTrade(conn);
 
 		let items = JSON.parse(query.items);
+
+		// region get appropriate bot and items based on game and items
+		let obj = await bots.getBot(global.gameConfig.dota2, items);
+		idleBot = obj.bot;
+		items = obj.items;
+		//endregion
+
+		let message = Buffer.from(idleBot.getBotName() + Date.now().toString())
+			.toString('base64')
+			.replace(/=/g, '');
+
 		let allowItems = await allowedItem.checkItems(items);
 
 		if (allowItems.length <= 0) {
