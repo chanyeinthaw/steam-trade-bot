@@ -22,9 +22,12 @@ class TradeBot {
 		this.client = new SteamCommunity();
 		this.offers = new SteamTradeOffers();
 		this.isBusy = false;
+		this.isLoggedOn = false;
+
+		this.registry.registerBot(this);
 
 		this.client.on('sessionExpired', (err) => {
-			this.registry.unRegisterBot(this);
+			this.isLoggedOn = false;
 			this.initOperation();
 		});
 	}
@@ -52,18 +55,21 @@ class TradeBot {
 
 	onClientLoggedOn(err, sessionID, webCookie) {
 		if (err) {
-			console.log(`Tradebot ${this.logOnOptions.accountName} error logging on retrying in 30s.`);
-
-			this.intervalId = setInterval(() => {
-				this.registry.unRegisterBot(this);
-				this.initOperation();
-			}, 30000);
+			this.isLoggedOn = false;
+			// console.log(`Tradebot ${this.logOnOptions.accountName} error logging on retrying in 30s.`);
+			//
+			// this.intervalId = setInterval(() => {
+			// 	this.registry.unRegisterBot(this);
+			// 	this.initOperation();
+			// }, 30000);
 
 			return;
 		}
 
-		if (this.intervalId !== null)
-			clearInterval(this.intervalId);
+		// if (this.intervalId !== null)
+		// 	clearInterval(this.intervalId);
+
+		this.isLoggedOn = true;
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} logged on.`);
 
@@ -78,8 +84,6 @@ class TradeBot {
 		this.offers.setup(this.webSession);
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} ready to trade.`);
-
-		this.registry.registerBot(this);
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} added to registry.`);
 

@@ -42,7 +42,7 @@ class Registry {
 		for(let i in this.bots) {
 			let bot = this.bots[i];
 
-			if (bot.isBotIdle()) {
+			if (bot.isBotIdle() && bot.isLoggedOn) {
 				let free = null;
 				try {
 					free = game.maxInventoryLimit - await bot.getInventoryItemCount(game.appId, game.contextId);

@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="27bfb731-67d0-49fd-9557-f5f195dfe677" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="update-user-points.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="update-user-points.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+            <state relative-caret-position="242">
+              <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -47,19 +44,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+            <state relative-caret-position="310">
+              <caret line="27" column="31" lean-forward="true" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="trade-bot.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="trade-bot.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/trade-bot/trade-bot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="32" column="101" selection-start-line="32" selection-start-column="101" selection-end-line="32" selection-end-column="101" />
+            <state relative-caret-position="253">
+              <caret line="57" column="46" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
               <folding>
-                <element signature="n#!!block;n#onClientLoggedOn#0;n#TradeBot#0" />
                 <element signature="n#!!block;n#getTradeOffer#0;n#TradeBot#0" />
                 <element signature="n#!!block;n#cancelTradeOffer#0;n#TradeBot#0" />
                 <element signature="n#!!block;n#sendTradeOffer#0;n#TradeBot#0" />
@@ -168,10 +164,10 @@
         <option value="$PROJECT_DIR$/modules/database/query/inventory-item.js" />
         <option value="$PROJECT_DIR$/modules/trade-bot/offer-checker.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/actions/check-offer.js" />
-        <option value="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js" />
         <option value="$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/modules/trade-bot/trade-bot.js" />
       </list>
     </option>
   </component>
@@ -295,14 +291,7 @@
       <workItem from="1525964382472" duration="3004000" />
       <workItem from="1526007127836" duration="20152000" />
       <workItem from="1526096127926" duration="6960000" />
-      <workItem from="1526246041578" duration="4660000" />
-    </task>
-    <task id="LOCAL-00094" summary="check-offer current version tested and fixed">
-      <created>1525774500374</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1525774500374</updated>
+      <workItem from="1526246041578" duration="8182000" />
     </task>
     <task id="LOCAL-00095" summary="updated .gitignore ignored .env">
       <created>1525838568475</created>
@@ -640,11 +629,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526274419088</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="removed update-user-points from jwt mw&#10;changed inputs and working mechanism of update-user-points">
+      <created>1526275335325</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1526275335325</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155333000" />
+    <option name="totallyTimeSpent" value="158855000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -723,7 +719,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added offer object to message response object" />
     <MESSAGE value="added allowedItem query" />
     <MESSAGE value="added json-query package" />
     <MESSAGE value="changed name query to db" />
@@ -748,7 +743,8 @@
     <MESSAGE value="added inventory length check and reduced the items" />
     <MESSAGE value="updated method calls" />
     <MESSAGE value="offer-checker and check-offer can now get assetid of received items" />
-    <option name="LAST_COMMIT_MESSAGE" value="offer-checker and check-offer can now get assetid of received items" />
+    <MESSAGE value="removed update-user-points from jwt mw&#10;changed inputs and working mechanism of update-user-points" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed update-user-points from jwt mw&#10;changed inputs and working mechanism of update-user-points" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1016,19 +1012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/trade-bot/trade-bot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="32" column="101" selection-start-line="32" selection-start-column="101" selection-end-line="32" selection-end-column="101" />
-          <folding>
-            <element signature="n#!!block;n#onClientLoggedOn#0;n#TradeBot#0" />
-            <element signature="n#!!block;n#getTradeOffer#0;n#TradeBot#0" />
-            <element signature="n#!!block;n#cancelTradeOffer#0;n#TradeBot#0" />
-            <element signature="n#!!block;n#sendTradeOffer#0;n#TradeBot#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/api-endpoint/api-endpoint.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -1036,13 +1019,6 @@
           <folding>
             <element signature="n#!!block;n#run#0;n#APIEndpoint#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -1055,8 +1031,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/gamesparks-endpoint/api-actions/update-user-points.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+        <state relative-caret-position="242">
+          <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="27" column="31" lean-forward="true" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/trade-bot/trade-bot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="57" column="46" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
+          <folding>
+            <element signature="n#!!block;n#getTradeOffer#0;n#TradeBot#0" />
+            <element signature="n#!!block;n#cancelTradeOffer#0;n#TradeBot#0" />
+            <element signature="n#!!block;n#sendTradeOffer#0;n#TradeBot#0" />
+          </folding>
         </state>
       </provider>
     </entry>
