@@ -38,27 +38,31 @@ class Registry {
 		return count;
 	}
 
+    static getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
 	async getBot(game, items) {
-		for(let i in this.bots) {
-			let bot = this.bots[i];
+		let randomIndex = Registry.getRandomInt(0, this.bots.length - 1);
 
-			if (bot.isLoggedOn) {
-				let free = null;
-				try {
-					free = game.maxInventoryLimit - await bot.getInventoryItemCount(parseInt(game.appId), game.contextId);
-				} catch (e) { continue; }
+        let bot = this.bots[randomIndex];
 
-				let reducedItems = null;
-				if (items.length > free) {
-					reducedItems = items.splice(0, items.length - free);
-				} else {
-					reducedItems = items;
-				}
-				if (reducedItems.length <= 0) continue;
+        if (bot.isLoggedOn) {
+            let free = null;
+            try {
+                free = game.maxInventoryLimit - await bot.getInventoryItemCount(parseInt(game.appId), game.contextId);
+            } catch (e) { return {bot: null, items: []}; }
 
-				return { bot: bot, items: reducedItems };
-			}
-		}
+            let reducedItems = null;
+            if (items.length > free) {
+                reducedItems = items.splice(0, items.length - free);
+            } else {
+                reducedItems = items;
+            }
+
+            if (reducedItems.length > 0)
+            	return { bot: bot, items: reducedItems };
+        }
 
 		return {bot: null, items: []};
 	}
