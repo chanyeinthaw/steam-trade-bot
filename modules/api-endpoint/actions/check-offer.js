@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
 	// region Validation
 	let query = req.query;
 
-	let requires = ['offerid'];
+	let requires = ['offerid', 'game'];
 
 	let errors = validate(requires, query);
 
@@ -21,6 +21,8 @@ module.exports = async (req, res) => {
 		return res.send(errors);
 	}
 	// endregion
+
+	const game = global.gameConfig[req.game];
 
 	try {
 		const db = global.app.db, gs = global.app.gs, bots = global.app.bots;
@@ -44,7 +46,7 @@ module.exports = async (req, res) => {
 		if (offer.trade_offer_state === 3) {
 			let items = JSON.parse(row.items);
 			let isIncomingOffer = row.in_out === 'in';
-			let totalCoins = await allowedItem.getTotalCoins(items);
+			let totalCoins = await allowedItem.getTotalCoins(items, game.appId);
 
 			// TODO add to own inventory
 			let receivedItems = await bot.getItemsOfCompletedOffer(offer);

@@ -45,7 +45,7 @@ class Registry {
 			if (bot.isBotIdle() && bot.isLoggedOn) {
 				let free = null;
 				try {
-					free = game.maxInventoryLimit - await bot.getInventoryItemCount(game.appId, game.contextId);
+					free = game.maxInventoryLimit - await bot.getInventoryItemCount(parseInt(game.appId), game.contextId);
 				} catch (e) { continue; }
 
 				let reducedItems = null;

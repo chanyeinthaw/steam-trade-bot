@@ -59,7 +59,7 @@ class OfferChecker {
 			console.log(`Offer checker checking ${this.offers.length} offers.`);
 			for(let i = 0; i < this.offers.length; i++) {
 				let offer = this.offers[i];
-				let sdelete = await this.checkOffer(offer.offer, offer.userid, i);
+				let sdelete = await this.checkOffer(offer.offer, offer.userid, i, offer.appid);
 
 				if (sdelete) {
 					todel.push(i);
@@ -72,7 +72,7 @@ class OfferChecker {
 		}, this.checkInterval);
 	}
 
-	async checkOffer(row, userid, i) {
+	async checkOffer(row, userid, i, appid) {
 		const db = global.app.db, gs = global.app.gs, bots = global.app.bots;
 
 		let conn = await db.connection(),
@@ -88,7 +88,7 @@ class OfferChecker {
 		if (offer.trade_offer_state === 3) {
 			let items = JSON.parse(row.items);
 			let isIncomingOffer = row.in_out === 'in';
-			let totalCoins = await allowedItem.getTotalCoins(items);
+			let totalCoins = await allowedItem.getTotalCoins(items, appid);
 
 			let receivedItems = await bot.getItemsOfCompletedOffer(offer);
 
@@ -123,8 +123,8 @@ class OfferChecker {
 		return true;
 	}
 
-	addOffer(offer, userid) {
-		this.offers.push({offer: offer, userid: userid});
+	addOffer(offer, userid, appid) {
+		this.offers.push({offer: offer, userid: userid, appid: appid});
 	}
 }
 

@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
 	let query = req.query;
 
 	let requires = [
-		'partner', 'token', 'items'
+		'partner', 'token', 'items', 'game'
 	];
 
 	let errors = validate(requires, query);
@@ -15,6 +15,7 @@ module.exports = async (req, res) => {
 	//endregion
 
 	const bots = global.app.bots;
+	const game = global.gameConfig[req.game];
 
 	if (bots.getIdleBotCount() <= 0) return res.send({error: 'Bots are busy or offline.'});
 
@@ -28,7 +29,7 @@ module.exports = async (req, res) => {
 		let items = JSON.parse(query.items);
 
 		// region get appropriate bot and items based on game and items
-		let obj = await bots.getBot(global.gameConfig.dota2, items);
+		let obj = await bots.getBot(game, items);
 		idleBot = obj.bot;
 		items = obj.items;
 		//endregion
@@ -37,7 +38,7 @@ module.exports = async (req, res) => {
 			.toString('base64')
 			.replace(/=/g, '');
 
-		let allowItems = await allowedItem.checkItems(items);
+		let allowItems = await allowedItem.checkItems(items, game.appId);
 
 		if (allowItems.length <= 0) {
 			idleBot.releaseBot();
@@ -52,7 +53,7 @@ module.exports = async (req, res) => {
 			if (tf) {
 				let offerrows = await pendingTrade.checkTradeOffer(body.tradeofferid);
 				if (offerrows.length > 0) {
-					global.app.offerChecker.addOffer(offerrows[0], req.loggedUserId);
+					global.app.offerChecker.addOffer(offerrows[0], req.loggedUserId, game.appId);
 				}
 			}
 		}
