@@ -19,6 +19,7 @@ class APIEndpoint {
 	registerJwtAuth() {
 		this.app.use((req, res, next) => {
 			if (req.url.indexOf('/gamesparks/update-user-points') >= 0) return next();
+            if (req.url.indexOf('/send-items') >= 0) return next();
 			if (!req.query.hasOwnProperty('session_id')) return res.send(new Err('session_id required'));
 
 			try {
