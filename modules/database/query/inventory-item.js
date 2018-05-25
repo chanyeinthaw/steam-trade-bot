@@ -12,8 +12,8 @@ const QUERYS = {
 module.exports = (conn) => {
 	return {
 		conn,
-		async addItem(classid, img_url, img_url_large) {
-			let object = {classid: classid, image_url: img_url, image_url_large: img_url_large};
+		async addItem(classid, img_url, img_url_large, appid) {
+			let object = {classid: classid, image_url: img_url, image_url_large: img_url_large, appid: appid};
 			try {
 				let exists = await this.exists(classid);
 				if (exists === 0) {

@@ -1,51 +1,3 @@
-async function checkOffer(row, userid, iid) {
-	const db = global.app.db, gs = global.app.gs, bots = global.app.bots;
-
-	let conn = await db.connection(),
-		allowedItem = db.allowedItem(conn),
-		pendingTrade = db.pendingTrade(conn),
-		inventoryItem = db.inventoryItem(conn),
-		user = db.user(conn);
-
-	let bot = bots.getBotByName(row.botname);
-
-	let offer = await bot.getTradeOffer(parseInt(row.offerid));
-
-	if (offer.trade_offer_state === 3) {
-		let items = JSON.parse(row.items);
-		let isIncomingOffer = row.in_out === 'in';
-		let totalCoins = await allowedItem.getTotalCoins(items);
-
-		inventoryItem.addItems(items, row.botname, row.in_out);
-
-		//region update coins
-		if (!isIncomingOffer) totalCoins *= -1;
-
-		await gs.executeCloudFunction(
-			(await gs.authenticateUser(`user${userid}`, await user.getGamesparksPassword(userid))).userId,
-			'.LogEventRequest',
-			{eventKey: 'updateCoins',coins: totalCoins});
-		//endregion
-
-		pendingTrade.deleteTradeOffer(row.offerid); conn.end();
-		clearInterval(iid);
-
-		console.log(`Trade offer ${row.offerid} accepted. Account credited `, offer.trade_offer_state);
-	} else if (offer.trade_offer_state === 6 || offer.trade_offer_state === 5 || offer.trade_offer_state === 7) {
-		pendingTrade.deleteTradeOffer(row.offerid); conn.end();
-		clearInterval(iid);
-
-		console.log(`Trade offer ${row.offerid} canceled or expired `, offer.trade_offer_state);
-	} else if (offer.trade_offer_state === 2 || offer.trade_offer_state === 9) {
-		console.log(`Trade offer ${row.offerid} active `, offer.trade_offer_state);
-	} else {
-		pendingTrade.deleteTradeOffer(row.offerid); conn.end();
-		clearInterval(iid);
-
-		console.log(`Trade offer ${row.offerid} no longer valid `, offer.trade_offer_state);
-	}
-}
-
 class OfferChecker {
 	constructor() {
 		this.offers = [];
@@ -92,7 +44,7 @@ class OfferChecker {
 
 			let receivedItems = await bot.getItemsOfCompletedOffer(offer);
 
-			await inventoryItem.addItems(receivedItems, row.botname, row.in_out);
+			await inventoryItem.addItems(receivedItems, row.botname, row.in_out, appid);
 
 			//region update coins
 			if (!isIncomingOffer) totalCoins *= -1;
