@@ -123,7 +123,22 @@ class TradeBot {
 		this.offers.cancelOffer({tradeOfferId : offerId}, (res) => {});
 	}
 
-	async sendTradeOffer(partnerSteamId, accessToken, itemsFromThem, itemsFromMe, message) {
+	prepareItems(items, game) {
+		let r = [];
+        for(let i = 0; i < items.length; i++){
+            let item = items[i];
+
+            item.appid = parseInt(game.appId);
+            item.contextid = game.contextId;
+            item.amount = 1;
+
+            r.push(item);
+        }
+
+        return r;
+	}
+
+	async sendTradeOffer(partnerSteamId, accessToken, itemsFromThem, itemsFromMe, message, game) {
 		return new Promise((resolve, reject) => {
 			if (this.client.steamID === null) {
 				return reject(new Error('Client not connected'));
@@ -133,8 +148,8 @@ class TradeBot {
 				message: message,
 				partnerSteamId: partnerSteamId,
 				accessToken: accessToken,
-				itemsFromThem: itemsFromThem,
-				itemsFromMe: itemsFromMe
+				itemsFromThem: this.prepareItems(itemsFromThem, game),
+				itemsFromMe: this.prepareItems(itemsFromMe, game)
 			};
 
 			this.isBusy = true;

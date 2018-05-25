@@ -15,9 +15,9 @@ module.exports = async (req, res) => {
 	//endregion
 
 	const bots = global.app.bots;
-	const game = global.gameConfig[req.game];
+	const game = global.gameConfig[query.game];
 
-	if (bots.getIdleBotCount() <= 0) return res.send({error: 'Bots are busy or offline.'});
+	// if (bots.getIdleBotCount() <= 0) return res.send({error: 'Bots are busy or offline.'});
 
 	let response = {status: 'failed', tradeofferid: null, message: ''};
 	let idleBot = null;
@@ -32,6 +32,11 @@ module.exports = async (req, res) => {
 		let obj = await bots.getBot(game, items);
 		idleBot = obj.bot;
 		items = obj.items;
+
+		if (idleBot === null) {
+		    response.message = 'No bot';
+            return res.send(response);
+        }
 		//endregion
 
 		let message = Buffer.from(idleBot.getBotName() + Date.now().toString())
@@ -41,11 +46,10 @@ module.exports = async (req, res) => {
 		let allowItems = await allowedItem.checkItems(items, game.appId);
 
 		if (allowItems.length <= 0) {
-			idleBot.releaseBot();
 			return res.send(response);
 		}
 
-		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, allowItems, [], message);
+		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, allowItems, [], message, game);
 
 		if (body.hasOwnProperty('tradeofferid')) {
 			let tf = await pendingTrade.addTradeOffer(body.tradeofferid, idleBot.getBotName(), message, JSON.stringify(allowItems), 'in')
@@ -66,5 +70,4 @@ module.exports = async (req, res) => {
 	}
 
 	res.send(response);
-	idleBot.releaseBot();
 };
