@@ -1,4 +1,4 @@
-const Model = require('../model.js');
+const Model = require('./model.js');
 
 class User extends Model {
     constructor(attributes) {

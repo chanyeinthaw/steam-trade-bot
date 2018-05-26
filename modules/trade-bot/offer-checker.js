@@ -1,3 +1,8 @@
+const PendingTrade = require('../database/pending-trade.js');
+const User = require('../database/user.js');
+const AllowedItem = require('../database/allowed-item.js');
+const InventoryItem = require('../database/inventory-item.js');
+
 class OfferChecker {
 	constructor() {
 		this.offers = [];
@@ -25,13 +30,11 @@ class OfferChecker {
 	}
 
 	async checkOffer(row, userid, i, appid) {
-		const gs = global.app.gs, bots = global.app.bots; // TODO fix database models
+		const gs = global.app.gs, bots = global.app.bots;
 
-		let conn = await db.connection(),
-			allowedItem = db.allowedItem(conn),
-			pendingTrade = db.pendingTrade(conn),
-			inventoryItem = db.inventoryItem(conn),
-			user = db.user(conn);
+        const trade = new PendingTrade({});
+        const user = new User({id: userid});
+        const item = new AllowedItem({});
 
 		let bot = bots.getBotByName(row.botname);
 
@@ -40,26 +43,26 @@ class OfferChecker {
 		if (offer.trade_offer_state === 3) {
 			let items = JSON.parse(row.items);
 			let isIncomingOffer = row.in_out === 'in';
-			let totalCoins = await allowedItem.getTotalCoins(items, appid);
+			let totalCoins = await item.getTotalCoins(items, appid);
 
 			let receivedItems = await bot.getItemsOfCompletedOffer(offer);
 
-			await inventoryItem.addItems(receivedItems, row.botname, row.in_out, appid);
+			await InventoryItem.addItems(receivedItems, row.botname, row.in_out, appid);
 
 			//region update coins
 			if (!isIncomingOffer) totalCoins *= -1;
 
 			await gs.executeCloudFunction(
-				(await gs.authenticateUser(`user${userid}`, await user.getGamesparksPassword(userid))).userId,
+				(await gs.authenticateUser(`user${userid}`, await user.gameSparksPassword)).userId,
 				'.LogEventRequest',
 				{eventKey: 'updateCoins',coins: totalCoins});
 			//endregion
 
-			pendingTrade.deleteTradeOffer(row.offerid); conn.end();
+			trade.delete(row.offerid);
 
 			console.log(`Trade offer ${row.offerid} accepted. Account credited `, offer.trade_offer_state);
 		} else if (offer.trade_offer_state === 6 || offer.trade_offer_state === 5 || offer.trade_offer_state === 7) {
-			pendingTrade.deleteTradeOffer(row.offerid); conn.end();
+			trade.delete(row.offerid);
 
 			console.log(`Trade offer ${row.offerid} canceled or expired `, offer.trade_offer_state);
 		} else if (offer.trade_offer_state === 2 || offer.trade_offer_state === 9) {
@@ -67,7 +70,7 @@ class OfferChecker {
 
 			return false;
 		} else {
-			pendingTrade.deleteTradeOffer(row.offerid); conn.end();
+			trade.delete(row.offerid);
 
 			console.log(`Trade offer ${row.offerid} no longer valid `, offer.trade_offer_state);
 		}

@@ -1,6 +1,9 @@
 const validate = require('../validate');
 const toSteamid = require('../../to-steamid');
 
+const AllowedItem = require('../../database/allowed-item.js');
+const PendingTrade = require('../../database/pending-trade.js');
+
 module.exports = async (req, res) => {
 	//region validation
 	let query = req.query;
@@ -20,11 +23,7 @@ module.exports = async (req, res) => {
 	let response = {status: 'failed', tradeofferid: null, message: ''};
 
 	let idleBot = null;
-	try { // TODO model
-		let conn = await global.app.db.connection();
-		let allowedItem = global.app.db.allowedItem(conn);
-		let pendingTrade = global.app.db.pendingTrade(conn);
-
+	try {
 		let items = JSON.parse(query.items);
 
 		// region get appropriate bot and items based on game and items
@@ -42,7 +41,7 @@ module.exports = async (req, res) => {
 			.toString('base64')
 			.replace(/=/g, '');
 
-		let allowItems = await allowedItem.checkItems(items, game.appId);
+		let allowItems = await new AllowedItem({}).checkItems(items, game.appId);
 
 		if (allowItems.length <= 0) {
 			return res.send(response);
@@ -51,13 +50,18 @@ module.exports = async (req, res) => {
 		let body = await idleBot.sendTradeOffer(toSteamid(query.partner), query.token, allowItems, [], message, game);
 
 		if (body.hasOwnProperty('tradeofferid')) {
-			let tf = await pendingTrade.addTradeOffer(body.tradeofferid, idleBot.getBotName(), message, JSON.stringify(allowItems), 'in')
+		    let trade = new PendingTrade({
+                offerid: body.tradeofferid,
+                botname: idleBot.getBotName(),
+                message: message,
+                items: JSON.stringify(allowItems),
+                in_out: 'in'
+            });
 
-			if (tf) {
-				let offers = await pendingTrade.checkTradeOffer(body.tradeofferid);
-				if (offers.length > 0) {
-					global.app.offerChecker.addOffer(offers[0], req.loggedUserId, game.appId);
-				}
+		    let insertIds = trade.save();
+
+			if (insertIds && insertIds > 0) {
+                global.app.offerChecker.addOffer(trade.attributes, req.loggedUserId, game.appId);
 			}
 		}
 

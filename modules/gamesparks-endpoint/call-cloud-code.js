@@ -1,10 +1,10 @@
-
+const User = require('../database/user.js');
 
 module.exports = async (classnn, data, uid) => {
 	const gs = global.app.gs;
 
 	const conn = await db.connection();
-	const user = new global.models.User({id: uid});
+	const user = new User({id: uid});
 
 	const credentials = {
 		userName: `user${uid}`,

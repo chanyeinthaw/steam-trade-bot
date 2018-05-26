@@ -7,13 +7,11 @@ const knex = require('knex');
 const GAMES = require('./game-config.js');
 const ENV = JSON.parse(Fs.readFileSync("env.json"));
 
-global.models = require('./modules/database');
-
 class App {
 	constructor(env, games) {
         this.env = env;
         this.games = games;
-        this.db = knex({client: 'mysql',connection: App.env.mysql});
+        this.db = knex({client: 'mysql',connection: this.env.mysql});
 
 		this.gs = new GameSparksEndpoint.GameSparks(this.env.gamesparks);
 		this.bots = new TradeBot.Registry();

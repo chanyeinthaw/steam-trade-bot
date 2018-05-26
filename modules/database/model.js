@@ -9,6 +9,45 @@ class Model {
         return global.app.db(this.table);
     }
 
+    save() {
+        return this.query().insert(this.attributes);
+    }
+
+    async saveOrGet(field = 'id') {
+        try {
+            let rows = await this.find(this.attributes[field], field);
+            if (rows.length > 0) {
+                return rows;
+            } else {
+                let insertId = (await this.save())[0];
+
+                if (insertId) {
+                    let row = Object.assign({}, this.attributes);
+
+                    row.id = insertId;
+
+                    return [row];
+                }
+            }
+        } catch (e) {
+            console.log(e.message);
+        }
+
+        return [];
+    }
+
+    find(id, field = null) {
+        return this.query().where(field == null ? this.primaryKey : field, id);
+    }
+
+    destroy(...ids) {
+        return this.query().whereIn(this.primaryKey, ids).del()
+    }
+
+    all() {
+        return this.query().select('*');
+    }
+
     async getAttribute(col) {
         try {
             let rows =  await this.query()
