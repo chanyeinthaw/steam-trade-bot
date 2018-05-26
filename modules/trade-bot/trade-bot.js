@@ -1,6 +1,6 @@
-const SteamTotp = require('steam-totp');
-const SteamCommunity = require('steamcommunity');
-const SteamTradeOffers = require('steam-tradeoffers');
+const Totp = require('steam-totp');
+const Community = require('steamcommunity');
+const TradeOffers = require('steam-tradeoffers');
 
 class TradeBot {
 	constructor(accountName, password, sharedSecret, idSecret, steamAPIKey ,registry) {
@@ -12,41 +12,27 @@ class TradeBot {
 			rememberPassword: true
 		};
 
-		this.intervalId = null;
-
 		this.webSession = {
 			APIKey: steamAPIKey
 		};
 
 		this.registry = registry;
-		this.client = new SteamCommunity();
-		this.offers = new SteamTradeOffers();
-		this.isBusy = false;
 		this.isLoggedOn = false;
 
 		this.registry.registerBot(this);
 
-		this.client.on('sessionExpired', (err) => {
+        this.client = new Community();
+        this.offers = new TradeOffers();
+
+		this.client.on('sessionExpired', () => {
 			this.isLoggedOn = false;
 			this.initOperation();
 		});
 	}
 
 	initOperation() {
-		this.logOnOptions.twoFactorCode = SteamTotp.generateAuthCode(this.logOnOptions.sharedSecret);
+		this.logOnOptions.twoFactorCode = Totp.generateAuthCode(this.logOnOptions.sharedSecret);
 		this.client.login(this.logOnOptions, this.onClientLoggedOn.bind(this));
-	}
-
-	isBotIdle() {
-		return !this.isBusy;
-	}
-
-	makeBotBusy() {
-		this.isBusy = true;
-	}
-
-	releaseBot() {
-		this.isBusy = false;
 	}
 
 	getBotName() {
@@ -56,18 +42,8 @@ class TradeBot {
 	onClientLoggedOn(err, sessionID, webCookie) {
 		if (err) {
 			this.isLoggedOn = false;
-			// console.log(`Tradebot ${this.logOnOptions.accountName} error logging on retrying in 30s.`);
-			//
-			// this.intervalId = setInterval(() => {
-			// 	this.registry.unRegisterBot(this);
-			// 	this.initOperation();
-			// }, 30000);
-
 			return;
 		}
-
-		// if (this.intervalId !== null)
-		// 	clearInterval(this.intervalId);
 
 		this.isLoggedOn = true;
 
@@ -123,7 +99,7 @@ class TradeBot {
 		this.offers.cancelOffer({tradeOfferId : offerId}, (res) => {});
 	}
 
-	prepareItems(items, game) {
+	static prepareItems(items, game) {
 		let r = [];
         for(let i = 0; i < items.length; i++){
             let item = items[i];
@@ -148,8 +124,8 @@ class TradeBot {
 				message: message,
 				partnerSteamId: partnerSteamId,
 				accessToken: accessToken,
-				itemsFromThem: this.prepareItems(itemsFromThem, game),
-				itemsFromMe: this.prepareItems(itemsFromMe, game)
+				itemsFromThem: TradeBot.prepareItems(itemsFromThem, game),
+				itemsFromMe: TradeBot.prepareItems(itemsFromMe, game)
 			};
 
 			this.isBusy = true;
