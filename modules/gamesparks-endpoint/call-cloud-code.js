@@ -9,7 +9,7 @@ module.exports = async (classnn, data, uid) => {
 	let password = '';
 
 	try {
-	    password = decrypt(await user.gameSparksPassword);
+	    password = await user.gameSparksPassword;
     } catch (e) { }
 
 	const credentials = {
