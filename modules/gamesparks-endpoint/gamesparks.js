@@ -7,7 +7,7 @@ const Requests = {
 	RegistrationRequest: '.RegistrationRequest'
 };
 
-class Gamesparks {
+class GameSparks {
 	constructor(config) {
 		this.gameSparks = require('gamesparks-node');
 		this.readyState = false;
@@ -71,7 +71,7 @@ class Gamesparks {
 
 	onError(error) {
 		this.readyState = false;
-		Logger.log(Logger.Error, 'Gamesparks error', error);
+		Logger.log(Logger.Error, 'GameSparks error', error);
 
 		delete this.gameSparks;
 
@@ -81,6 +81,6 @@ class Gamesparks {
 }
 
 module.exports = {
-	Gamesparks: Gamesparks,
+    GameSparks: GameSparks,
 	Requests: Requests
 };

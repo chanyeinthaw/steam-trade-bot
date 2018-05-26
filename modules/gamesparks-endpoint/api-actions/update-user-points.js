@@ -9,9 +9,8 @@ module.exports = async (req, res) => {
 	if (!query.hasOwnProperty('appKey'))
 		return res.send({error: 'appKey required'});
 
-	if (query.appKey !== global.appKey)
+	if (query.appKey !== global.app.env.appKey)
 		return res.send({error: 'invalid appKey'});
-	//endregion
 
 	try {
 		let data = JSON.parse(query.data);

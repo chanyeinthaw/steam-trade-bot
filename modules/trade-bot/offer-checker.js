@@ -1,7 +1,7 @@
 class OfferChecker {
 	constructor() {
 		this.offers = [];
-		this.checkInterval = global.offerCheckInterval;
+		this.checkInterval = global.app.env.offerCheckInterval;
 	}
 
 	start() {
@@ -25,7 +25,7 @@ class OfferChecker {
 	}
 
 	async checkOffer(row, userid, i, appid) {
-		const db = global.app.db, gs = global.app.gs, bots = global.app.bots;
+		const gs = global.app.gs, bots = global.app.bots; // TODO fix database models
 
 		let conn = await db.connection(),
 			allowedItem = db.allowedItem(conn),

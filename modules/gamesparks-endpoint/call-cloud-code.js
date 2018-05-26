@@ -1,13 +1,14 @@
+
+
 module.exports = async (classnn, data, uid) => {
 	const gs = global.app.gs;
-	const db = global.app.db;
 
 	const conn = await db.connection();
-	const userq = db.user(conn);
+	const user = new global.models.User({id: uid});
 
 	const credentials = {
 		userName: `user${uid}`,
-		password: await userq.getGamesparksPassword(uid)
+		password: await user.gameSparksPassword
 	};
 
 	conn.end();

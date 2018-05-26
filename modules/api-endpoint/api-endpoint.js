@@ -17,13 +17,15 @@ class APIEndpoint {
 	}
 
 	registerJwtAuth() {
+		let jwtSecret = global.app.env.jwtSecret;
+
 		this.app.use((req, res, next) => {
 			if (req.url.indexOf('/gamesparks/update-user-points') >= 0) return next();
             if (req.url.indexOf('/send-items') >= 0) return next();
 			if (!req.query.hasOwnProperty('session_id')) return res.send(new Err('session_id required'));
 
 			try {
-				req.loggedUserId = jwt.verify(req.query.session_id, global.jwtSecret).sub;
+				req.loggedUserId = jwt.verify(req.query.session_id, jwtSecret).sub;
 				return next();
 			} catch (e) {
 				return res.send(new Err(e.message));

@@ -5,8 +5,10 @@ module.exports = async (req, res) => {
 	let query = req.query;
 
 	let requires = [
-		'partner', 'token', 'items', 'apikey'
+		'partner', 'token', 'cart', 'appKey'
 	];
+
+	// items - item format {'appid', assetid: '', amount: ''}
 
 	let errors = validate(requires, query);
 
@@ -14,9 +16,9 @@ module.exports = async (req, res) => {
 		return res.send(errors);
 	}
 
-	if (query.apikey !== 'foolish') {
+	if (query.appKey !== global.appKey) {
 		return res.send({
-			error: 'Invalid API key.'
+			error: 'Invalid APP key.'
 		});
 	}
 

@@ -15,13 +15,12 @@ module.exports = async (req, res) => {
 	//endregion
 
 	const bots = global.app.bots;
-	const game = global.gameConfig[query.game];
-
-	// if (bots.getIdleBotCount() <= 0) return res.send({error: 'Bots are busy or offline.'});
+	const game = global.app.games[query.game];
 
 	let response = {status: 'failed', tradeofferid: null, message: ''};
+
 	let idleBot = null;
-	try {
+	try { // TODO model
 		let conn = await global.app.db.connection();
 		let allowedItem = global.app.db.allowedItem(conn);
 		let pendingTrade = global.app.db.pendingTrade(conn);
@@ -55,9 +54,9 @@ module.exports = async (req, res) => {
 			let tf = await pendingTrade.addTradeOffer(body.tradeofferid, idleBot.getBotName(), message, JSON.stringify(allowItems), 'in')
 
 			if (tf) {
-				let offerrows = await pendingTrade.checkTradeOffer(body.tradeofferid);
-				if (offerrows.length > 0) {
-					global.app.offerChecker.addOffer(offerrows[0], req.loggedUserId, game.appId);
+				let offers = await pendingTrade.checkTradeOffer(body.tradeofferid);
+				if (offers.length > 0) {
+					global.app.offerChecker.addOffer(offers[0], req.loggedUserId, game.appId);
 				}
 			}
 		}
