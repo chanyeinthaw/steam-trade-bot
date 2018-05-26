@@ -1,4 +1,5 @@
 const Model = require('./model.js');
+const jq = require('json-query');
 
 function getClassIdArray(items) {
     let result = [];

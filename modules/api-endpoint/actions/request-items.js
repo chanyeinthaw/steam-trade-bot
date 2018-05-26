@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
                 in_out: 'in'
             });
 
-		    let insertIds = trade.save();
+		    let insertIds = await trade.save();
 
 			if (insertIds && insertIds > 0) {
                 global.app.offerChecker.addOffer(trade.attributes, req.loggedUserId, game.appId);
@@ -66,8 +66,6 @@ module.exports = async (req, res) => {
 		}
 
 		response.status = 'success'; response.tradeofferid = body.tradeofferid;
-
-		conn.end();
 	} catch(e) {
 		response.message = e.message;
 	}

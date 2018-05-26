@@ -18,7 +18,7 @@ class InventoryItem extends Model {
 
             let item = (
                 await new InventoryItem({
-                    classid: current.claim(),
+                    classid: current.classid,
                     image_url: current.icon_url,
                     image_url_large: current.icon_url_large
                 }).saveOrGet('classid')
@@ -30,7 +30,7 @@ class InventoryItem extends Model {
                     assetid: current.id,
                     inventory_item_id: item.id,
                     count: current.amount,
-                    inout: inout
+                    in_out: inout
                 }).save();
             }
         }

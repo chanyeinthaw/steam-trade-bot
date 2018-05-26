@@ -13,7 +13,9 @@ class OfferChecker {
 		setInterval(async () => {
 			if (this.offers.length <= 0) return;
 			let todel = [];
+
 			console.log(`Offer checker checking ${this.offers.length} offers.`);
+
 			for(let i = 0; i < this.offers.length; i++) {
 				let offer = this.offers[i];
 				let sdelete = await this.checkOffer(offer.offer, offer.userid, i, offer.appid);
@@ -58,11 +60,11 @@ class OfferChecker {
 				{eventKey: 'updateCoins',coins: totalCoins});
 			//endregion
 
-			trade.delete(row.offerid);
+			await trade.delete(row.offerid);
 
 			console.log(`Trade offer ${row.offerid} accepted. Account credited `, offer.trade_offer_state);
 		} else if (offer.trade_offer_state === 6 || offer.trade_offer_state === 5 || offer.trade_offer_state === 7) {
-			trade.delete(row.offerid);
+			await trade.delete(row.offerid);
 
 			console.log(`Trade offer ${row.offerid} canceled or expired `, offer.trade_offer_state);
 		} else if (offer.trade_offer_state === 2 || offer.trade_offer_state === 9) {
@@ -70,7 +72,7 @@ class OfferChecker {
 
 			return false;
 		} else {
-			trade.delete(row.offerid);
+			await trade.delete(row.offerid);
 
 			console.log(`Trade offer ${row.offerid} no longer valid `, offer.trade_offer_state);
 		}

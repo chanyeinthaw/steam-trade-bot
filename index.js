@@ -7,21 +7,23 @@ const knex = require('knex');
 const GAMES = require('./game-config.js');
 const ENV = JSON.parse(Fs.readFileSync("env.json"));
 
+global.decryptionCache = {};
+
 class App {
 	constructor(env, games) {
         this.env = env;
         this.games = games;
         this.db = knex({client: 'mysql',connection: this.env.mysql});
-
-		this.gs = new GameSparksEndpoint.GameSparks(this.env.gamesparks);
-		this.bots = new TradeBot.Registry();
-		this.apiep = new APIEndpoint(3000);
-		this.offerChecker = new TradeBot.OfferChecker();
-
-		this.registerBotList();
 	}
 
 	run() {
+        this.gs = new GameSparksEndpoint.GameSparks(this.env.gamesparks);
+        this.bots = new TradeBot.Registry();
+        this.apiep = new APIEndpoint(3000);
+        this.offerChecker = new TradeBot.OfferChecker();
+
+        this.registerBotList();
+
 		this.offerChecker.start();
 		this.apiep.run();
 	}

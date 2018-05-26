@@ -62,8 +62,6 @@ class TradeBot {
 		console.log(`TradeBot ${this.logOnOptions.accountName} ready to trade.`);
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} added to registry.`);
-
-		this.releaseBot();
 	}
 
 	async getInventoryItemCount(appid, contextid) {

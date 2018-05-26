@@ -53,7 +53,6 @@ class Model {
             let rows =  await this.query()
                 .select(col)
                 .where(this.primaryKey, this.attributes[this.primaryKey]);
-
             return rows[0][col];
         } catch (e) {
             return undefined;

@@ -9,7 +9,7 @@ let serialize = require('php-serialize');
  * @access public
  */
 function decrypt(data) {
-	let key = new Buffer(global.appKey, 'base64');
+	let key = new Buffer(global.app.env.appKey, 'base64');
 	// If no data - return blank string
 	if (data !== "") {
 		// Check localised cache to save time
@@ -27,6 +27,10 @@ function decrypt(data) {
 				// Decrypt
 				let decrypted = decipher.update(value, 'binary', 'utf8');
 				decrypted += decipher.final('utf8');
+
+				decrypted = decrypted.split(':')[2];
+				decrypted = decrypted.replace(/"/g, '');
+				decrypted = decrypted.substr(0, decrypted.length - 1);
 
 				// Store in cache
 				global.decryptionCache[data] = decrypted;
