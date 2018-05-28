@@ -1,4 +1,4 @@
-const Model = require('./model.js');
+const Model = require('../Model.js');
 const jq = require('json-query');
 
 function getClassIdArray(items) {
@@ -12,11 +12,14 @@ function getClassIdArray(items) {
 }
 
 class AllowedItem extends Model {
-    constructor(attributes) {
-        super(attributes, 'allowed_items');
+    constructor(values) {
+        super(values);
+
+        this.table = 'allowed_items';
+        this.primaryKey = 'id';
     }
 
-    async checkItems(items, appid) {
+    static async checkItems(items, appid) {
         try {
             let allowedAssets = await this
                 .query()
@@ -39,12 +42,12 @@ class AllowedItem extends Model {
 
                 return allowedItems;
             }
-        } catch (e) {
+        } catch (e) { console.log(e);
             return [];
         }
     }
 
-    async getTotalCoins(items, appid) {
+    static async getTotalCoins(items, appid) {
         try {
             let assetsWithPrice = await this
                 .query()

@@ -6,7 +6,7 @@ global.app = {
     db: knex({client: 'mysql',connection: ENV.mysql})
 };
 
-const PendingTrade = require('./modules/database/pending-trade.js');
+const PendingTrade = require('./modules/database/PendingTrade.js');
 
 let pt = new PendingTrade({
     offerid: '134',

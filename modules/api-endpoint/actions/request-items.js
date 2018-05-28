@@ -1,8 +1,8 @@
 const validate = require('../validate');
 const toSteamid = require('../../to-steamid');
 
-const AllowedItem = require('../../database/allowed-item.js');
-const PendingTrade = require('../../database/pending-trade.js');
+const AllowedItem = require('../../database/AllowedItem.js');
+const PendingTrade = require('../../database/PendingTrade.js');
 
 module.exports = async (req, res) => {
 	//region validation
@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
 			.toString('base64')
 			.replace(/=/g, '');
 
-		let allowItems = await new AllowedItem({}).checkItems(items, game.appId);
+		let allowItems = await AllowedItem.checkItems(items, game.appId);
 
 		if (allowItems.length <= 0) {
 			return res.send(response);
@@ -58,10 +58,10 @@ module.exports = async (req, res) => {
                 in_out: 'in'
             });
 
-		    let insertIds = await trade.save();
+		    let isSaved = await trade.save();
 
-			if (insertIds && insertIds > 0) {
-                global.app.offerChecker.addOffer(trade.attributes, req.loggedUserId, game.appId);
+			if (isSaved) {
+                global.app.offerChecker.addOffer(trade.values, req.loggedUserId, game.appId);
 			}
 		}
 

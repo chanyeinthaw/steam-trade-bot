@@ -1,16 +1,12 @@
-const User = require('../database/user.js');
+const User = require('../database/Users');
 const decrypt = require('../decrypt.js');
 
 module.exports = async (classnn, data, uid) => {
 	const gs = global.app.gs;
 
-	const user = new User({id: uid});
-
-	let password = '';
-
-	try {
-	    password = await user.gameSparksPassword;
-    } catch (e) { }
+	const user = User.find(uid);
+    let password = '';
+	if (user) password = user.gameSparksPassword;
 
 	const credentials = {
 		userName: `user${uid}`,
