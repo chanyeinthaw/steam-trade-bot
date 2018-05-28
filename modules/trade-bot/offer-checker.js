@@ -34,7 +34,7 @@ class OfferChecker {
 	async checkOffer(row, userid, i, appid) {
 		const gs = global.app.gs, bots = global.app.bots;
 
-        const user = User.find(userid);
+        const user = await User.find(userid);
 
         if (!user) {
             console.log(`Invalid user : ${userid}`);

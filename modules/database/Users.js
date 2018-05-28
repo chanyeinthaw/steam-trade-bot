@@ -11,7 +11,7 @@ class Users extends Model {
 
     get gameSparksPassword() {
         try {
-            return decrypt(data);
+            return decrypt(this.values.gamesparks_password);
         } catch (e) {
             return '';
         }
