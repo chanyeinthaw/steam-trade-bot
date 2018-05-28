@@ -1,4 +1,4 @@
-const Store = require('./Store');
+let db = null;
 
 class Model {
     constructor(values) {
@@ -24,7 +24,6 @@ class Model {
     }
 
     newQuery() {
-        let db = Store.get('knex');
         return db(this.table);
     }
 
@@ -97,6 +96,10 @@ class Model {
 
     static destroy(...ids) {
         return new this().delete(ids);
+    }
+
+    static setup(knex) {
+        db = knex;
     }
 }
 

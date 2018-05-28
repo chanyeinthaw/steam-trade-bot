@@ -1,5 +1,5 @@
 const Fs = require('fs');
-const Store = require('./modules/Store');
+const Model = require('./modules/Model');
 const TradeBot = require('./modules/trade-bot');
 const APIEndpoint = require('./modules/api-endpoint');
 const GameSparksEndpoint = require('./modules/gamesparks-endpoint');
@@ -14,9 +14,8 @@ class App {
 	constructor(env, games) {
         this.env = env;
         this.games = games;
-        this.db = knex({client: 'mysql',connection: this.env.mysql});
 
-        Store.set('knex', this.db);
+        Model.setup(knex({client: 'mysql',connection: this.env.mysql}));
 	}
 
 	run() {
