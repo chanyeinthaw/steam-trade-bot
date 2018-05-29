@@ -47,6 +47,8 @@ class TradeBot {
 
 		this.isLoggedOn = true;
 
+		this.client.setCookies(webCookie);
+
 		console.log(`TradeBot ${this.logOnOptions.accountName} logged on.`);
 
 		console.log(`TradeBot ${this.logOnOptions.accountName} web session started.`);
@@ -81,6 +83,15 @@ class TradeBot {
 			});
 		});
 	}
+
+	async acceptOfferById(offerId) {
+	    let ids = this.logOnOptions.identitySecret;
+	    return new Promise((resolve) => {
+            this.client.acceptConfirmationForObject(ids, offerId, (err) => {
+                resolve(err);
+            })
+        })
+    }
 
 	async getTradeOffer(offerId) {
 		return new Promise((resolve, reject) => {

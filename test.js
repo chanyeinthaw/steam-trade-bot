@@ -6,15 +6,15 @@ global.app = {
     db: knex({client: 'mysql',connection: ENV.mysql})
 };
 
-const PendingTrade = require('./modules/database/PendingTrade.js');
+const Model = require('./modules/Model');
 
-let pt = new PendingTrade({
-    offerid: '134',
-    message: 'HI',
-    botname: 'botname',
-    items: 'items',
-    in_out: 'in'
-});
+Model.setup(global.app.db);
+const Test = require('./modules/database/InventoryItem.js');
 
+async function test() {
+    let t = await Test.find(1);
 
-pt.save().then((r) => console.log(r));
+    console.log(t)
+}
+
+test();
